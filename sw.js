@@ -10,7 +10,7 @@ self.addEventListener('install',(event)=>{
             'https://fonts.googleapis.com/icon?family=Material+Icons',
             'https://cdn.jsdelivr.net/npm/daisyui@2.31.0/dist/full.css',
             'https://fonts.gstatic.com/s/materialicons/v139/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2',
-            ''
+            'https://fonts.gstatic.com/s/materialicons/v139/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2'
         ])
     });
 
