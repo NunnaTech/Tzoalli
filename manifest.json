@@ -1,6 +1,7 @@
 {
     "name": "Tzoalli - Candy Shop Orders",
     "short_name": "Tzoalli",
+    "start_url": "./index.html",
     "description":"Progressive web application to manage candy shop orders",
     "display": "standalone",
     "orientation": "portrait",
@@ -8,32 +9,42 @@
     "theme_color": "#FFFFFF",
     "icons": [
         {
-            "src": "./images/icons/android-launchericon-48-48.png",
-            "type": "image/png",
-            "sizes": "48x48"
-        },
-        {
-            "src": "./images/icons/android-launchericon-72-72.png",
+            "src": "images/icons/android-launchericon-72-72.png",
             "type": "image/png",
             "sizes": "72x72"
         },
         {
-            "src": "./images/icons/android-launchericon-96-96.png",
+            "src": "images/icons/android-launchericon-96-96.png",
             "type": "image/png",
             "sizes": "96x96"
         },
         {
-            "src": "./images/icons/android-launchericon-144-144.png",
+            "src": "images/icons/android-launchericon-144-144.png",
+            "type": "image/png",
+            "sizes": "128x128"
+        },
+        {
+            "src": "images/icons/android-launchericon-144-144.png",
             "type": "image/png",
             "sizes": "144x144"
         },
         {
-            "src": "./images/icons/android-launchericon-192-192.png",
+            "src": "images/icons/android-launchericon-144-144.png",
+            "type": "image/png",
+            "sizes": "152x152"
+        },
+        {
+            "src": "images/icons/android-launchericon-192-192.png",
             "type": "image/png",
             "sizes": "192x192"
         },
         {
-            "src": "./images/icons/android-launchericon-512-512.png",
+            "src": "images/icons/android-launchericon-512-512.png",
+            "type": "image/png",
+            "sizes": "384x384"
+        },
+        {
+            "src": "images/icons/android-launchericon-512-512.png",
             "type": "image/png",
             "sizes": "512x512"
         }
