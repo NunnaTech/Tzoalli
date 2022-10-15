@@ -18,7 +18,7 @@ self.addEventListener('install',(event)=>{
         return cache.addAll([
             '/',
             '/index.html',
-            '/login.html',
+            '/dashboard.html',
             '/template.html',
             '/js/app.js',
             '/sw.js',
