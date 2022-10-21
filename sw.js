@@ -24,6 +24,7 @@ self.addEventListener('install',(event)=>{
             '/observations.html',
             '/order.html',
             '/products.html',
+            '/visits.html',
             '/template.html',
             '/js/app.js',
             '/sw.js',
