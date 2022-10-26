@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
         rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/daisyui@2.31.0/dist/full.css" rel="stylesheet" type="text/css" />
-    <link href="./dist/output.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>Orders | New</title>
 </head>
 
@@ -83,56 +83,129 @@
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-1 md:lg:grid-cols-3">
-                        <!--Generar Cards -->
-
-                        <div class="card w-auto bg-base-100 shadow-xl p-4 m-5 mx-15">
-                            <figure><img class="rounded-xl" src="https://placeimg.com/400/225/arch" alt="Shoes" />
-                            </figure>
-                            <div class="card-body">
-                                <h2 class="card-title">
-                                    Galletas de café
-                                </h2>
-                                <p class="text-xl font-light"><span
-                                        class="indicator-item badge bg-[#EA7063] border-none text-xl p-3">$12</span>
-                                    Precio individual</p>
-                                <div class="badge badge-outline p-4 mt-10">
-                                    <h1 class="text-sm">Subtotal $1300</h1>
+                    <div class="overflow-x-auto w-full pt-5">
+                      <table class="table w-full">
+                        <!-- head -->
+                        <thead>
+                          <tr>
+                            <th class="bg-white">Nombre del dulce</th>
+                            <th class="bg-white">Cantidad</th>
+                            <th class="bg-white">Precio unitario</th>
+                            <th class="bg-white">Subtotal</th>
+                            <th class="bg-white">Quitar</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <!-- row 1 -->
+                          <tr class="hover">
+                            <td>
+                              <div class="flex items-center space-x-3">
+                                <div class="avatar">
+                                  <div class="mask mask-squircle w-12 h-12">
+                                    <img src="https://placeimg.com/400/225/arch" alt="Avatar Tailwind CSS Component" />
+                                  </div>
                                 </div>
-                            </div>
-                        </div>
-
-                        <div class="card w-auto bg-base-100 shadow-xl p-4 m-5 mx-15">
-                            <figure><img class="rounded-xl" src="https://placeimg.com/400/225/arch" alt="Shoes" />
-                            </figure>
-                            <div class="card-body">
-                                <h2 class="card-title">
-                                    Galletas de café
-                                </h2>
-                                <p class="text-xl font-light"><span
-                                        class="indicator-item badge bg-[#EA7063] border-none text-xl p-3">$12</span>
-                                    Precio individual</p>
-                                <div class="badge badge-outline p-4 mt-10">
-                                    <h1 class="text-sm">Subtotal $1300</h1>
+                                <div>
+                                  <div class="font-bold">Oblea Azucarada</div>
                                 </div>
-                            </div>
-                        </div>
-
-                        <div class="card w-auto bg-base-100 shadow-xl p-4 m-5 mx-15">
-                            <figure><img class="rounded-xl" src="https://placeimg.com/400/225/arch" alt="Shoes" />
-                            </figure>
-                            <div class="card-body">
-                                <h2 class="card-title">
-                                    Galletas de café
-                                </h2>
-                                <p class="text-xl font-light"><span
-                                        class="indicator-item badge bg-[#EA7063] border-none text-xl p-3">$12</span>
-                                    Precio individual</p>
-                                <div class="badge badge-outline p-4 mt-10">
-                                    <h1 class="text-sm">Subtotal $1300</h1>
+                              </div>
+                            </td>
+                            <td>
+                              12 Piezas
+                            </td>
+                            <td>$10</td>
+                            <td>$1200</td>
+                            <th>
+                              <button class="btn btn-ghost">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                  </svg>
+                              </button>
+                            </th>
+                          </tr>
+                          <!-- row 2 -->
+                          <tr class="hover">
+                            <td>
+                              <div class="flex items-center space-x-3">
+                                <div class="avatar">
+                                  <div class="mask mask-squircle w-12 h-12">
+                                    <img src="https://placeimg.com/400/225/arch" alt="Avatar Tailwind CSS Component" />
+                                  </div>
                                 </div>
-                            </div>
-                        </div>
+                                <div>
+                                  <div class="font-bold">Dulce de leche</div>
+                                </div>
+                              </div>
+                            </td>
+                            <td>
+                              20 Piezas
+                            </td>
+                            <td>$14</td>
+                            <td>$1200</td>
+                            <th>
+                              <button class="btn btn-ghost">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                              </button>
+                            </th>
+                          </tr>
+                          <!-- row 3 -->
+                          <tr class="hover">
+                            <td>
+                              <div class="flex items-center space-x-3">
+                                <div class="avatar">
+                                  <div class="mask mask-squircle w-12 h-12">
+                                    <img src="https://placeimg.com/400/225/arch" alt="Avatar Tailwind CSS Component" />
+                                  </div>
+                                </div>
+                                <div>
+                                  <div class="font-bold">Goma de café</div>
+                                </div>
+                              </div>
+                            </td>
+                            <td>
+                              20 Piezas
+                            </td>
+                            <td>$9</td>
+                            <td>$1200</td>
+                            <th>
+                              <button class="btn btn-ghost">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                  </svg>
+                              </button>
+                            </th>
+                          </tr>
+                          <!-- row 4 -->
+                          <tr class="hover">
+                            <td>
+                              <div class="flex items-center space-x-3">
+                                <div class="avatar">
+                                  <div class="mask mask-squircle w-12 h-12">
+                                    <img src="https://placeimg.com/400/225/arch" alt="Avatar Tailwind CSS Component" />
+                                  </div>
+                                </div>
+                                <div>
+                                  <div class="font-bold">Polvorón de cacahuate</div>
+                                </div>
+                              </div>
+                            </td>
+                            <td>
+                              12 Piezas
+                            </td>
+                            <td>$21</td>
+                            <td>$1200</td>
+                            <th>
+                              <button class="btn btn-ghost">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                  </svg>
+                              </button>
+                            </th>
+                          </tr>
+                        </tbody>
+                      </table>
                     </div>
 
                     <div class="flex justify-center py-5 sticky bottom-0 z-50">
