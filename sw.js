@@ -10,7 +10,8 @@ self.addEventListener('install',(event)=>{
             'https://fonts.googleapis.com/icon?family=Material+Icons',
             'https://cdn.jsdelivr.net/npm/daisyui@2.31.0/dist/full.css',
             'https://fonts.gstatic.com/s/materialicons/v139/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2',
-            'https://fonts.gstatic.com/s/materialicons/v139/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2'
+            'https://fonts.gstatic.com/s/materialicons/v139/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2',
+            'https://placeimg.com/400/225/arch'
         ])
     });
 
@@ -20,6 +21,12 @@ self.addEventListener('install',(event)=>{
             '/',
             '/index.html',
             '/dashboard.html',
+            '/observations.html',
+            '/order.html',
+            '/products.html',
+            '/completed-visits.html',
+            '/next-visits.html',
+            '/pending-visits.html',
             '/template.html',
             '/js/app.js',
             '/sw.js',
