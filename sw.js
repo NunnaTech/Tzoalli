@@ -11,7 +11,6 @@ self.addEventListener('install',(event)=>{
             'https://cdn.jsdelivr.net/npm/daisyui@2.31.0/dist/full.css',
             'https://fonts.gstatic.com/s/materialicons/v139/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2',
             'https://fonts.gstatic.com/s/materialicons/v139/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2',
-            'https://placeimg.com/400/225/arch'
         ])
     });
 
@@ -39,6 +38,7 @@ self.addEventListener('install',(event)=>{
             '/images/Logo.png',
             '/images/london.jpg',
             '/images/candies.png',
+            '/images/dulce-blueprint.png',
             '/images/icons/android-launchericon-48-48.png',
             '/images/icons/android-launchericon-72-72.png',
             '/images/icons/android-launchericon-96-96.png',
