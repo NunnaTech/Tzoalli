@@ -668,6 +668,11 @@ video {
   margin-bottom: 1.25rem;
 }
 
+.my-2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
 .mx-2 {
   margin-left: 0.5rem;
   margin-right: 0.5rem;
@@ -729,6 +734,14 @@ video {
   margin-top: 0.75rem;
 }
 
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+
+.mb-3 {
+  margin-bottom: 0.75rem;
+}
+
 .block {
   display: block;
 }
@@ -785,6 +798,16 @@ video {
   height: 3rem;
 }
 
+.h-min {
+  height: -webkit-min-content;
+  height: -moz-min-content;
+  height: min-content;
+}
+
+.h-10 {
+  height: 2.5rem;
+}
+
 .min-h-screen {
   min-height: 100vh;
 }
@@ -819,6 +842,10 @@ video {
 
 .w-12 {
   width: 3rem;
+}
+
+.w-10 {
+  width: 2.5rem;
 }
 
 .flex-none {
@@ -1106,12 +1133,20 @@ video {
   font-weight: 600;
 }
 
+.font-normal {
+  font-weight: 400;
+}
+
 .font-light {
   font-weight: 300;
 }
 
 .normal-case {
   text-transform: none;
+}
+
+.tracking-tight {
+  letter-spacing: -0.025em;
 }
 
 .text-gray-500 {
@@ -1142,6 +1177,11 @@ video {
 .text-black {
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+
+.text-yellow-300 {
+  --tw-text-opacity: 1;
+  color: rgb(253 224 71 / var(--tw-text-opacity));
 }
 
 .shadow-md {
@@ -1246,6 +1286,10 @@ video {
 
   .sm\:flex-1 {
     flex: 1 1 0%;
+  }
+
+  .sm\:grid-cols-1 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
   }
 
   .sm\:flex-row {
