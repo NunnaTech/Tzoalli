@@ -729,10 +729,6 @@ video {
   margin-top: 0.75rem;
 }
 
-.mt-10 {
-  margin-top: 2.5rem;
-}
-
 .block {
   display: block;
 }
@@ -747,6 +743,10 @@ video {
 
 .inline-flex {
   display: inline-flex;
+}
+
+.table {
+  display: table;
 }
 
 .grid {
@@ -781,6 +781,10 @@ video {
   height: 1.5rem;
 }
 
+.h-12 {
+  height: 3rem;
+}
+
 .min-h-screen {
   min-height: 100vh;
 }
@@ -811,6 +815,10 @@ video {
 
 .w-11\/12 {
   width: 91.666667%;
+}
+
+.w-12 {
+  width: 3rem;
 }
 
 .flex-none {
@@ -877,8 +885,18 @@ video {
   gap: 0.5rem;
 }
 
+.space-x-3 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(0.75rem * var(--tw-space-x-reverse));
+  margin-left: calc(0.75rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
 .self-end {
   align-self: flex-end;
+}
+
+.overflow-x-auto {
+  overflow-x: auto;
 }
 
 .rounded-lg {
@@ -980,10 +998,6 @@ video {
 
 .p-5 {
   padding: 1.25rem;
-}
-
-.p-3 {
-  padding: 0.75rem;
 }
 
 .px-3 {
