@@ -23,6 +23,7 @@ self.addEventListener('install',(event)=>{
             '/observations.html',
             '/order.html',
             '/products.html',
+            '/current-products.html',
             '/completed-visits.html',
             '/next-visits.html',
             '/pending-visits.html',
