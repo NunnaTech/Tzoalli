@@ -8,7 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/daisyui@2.31.0/dist/full.css" rel="stylesheet" type="text/css" />
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="./dist/output.css" rel="stylesheet">
   <title>Visitas | Próximas</title>
 </head>
 
@@ -30,7 +30,7 @@
         </div>
         <div class="flex-none">
           <div class="tooltip tooltip-left" data-tip="cerrar sesión">
-            <button class="btn btn-square btn-ghost">
+            <button class="btn btn-square btn-ghost" id="btnLogout">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="inline-block w-5 h-5 stroke-current">>
                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -105,7 +105,7 @@
             </ul>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2" id="next-visits-generator">
-              
+
               <div class="card bg-base-100 shadow-xl mt-3 w-auto sm:flex-1 mx-3 sm:ml-0">
                 <div class="animate-pulse flex card-body">
                   <div class=" btn btn-disabled bg-slate-400 rounded"></div>
@@ -221,7 +221,8 @@
       </aside>
     </div>
   </div>
-  <script src="./js/modules/NextVisitModule.js"></script>
+  <script src="./js/modules/NextVisitModule.js" type="module"></script>
+  <script src="./js/modules/LogoutModule.js" type="module"></script>
 </body>
 
 </html>

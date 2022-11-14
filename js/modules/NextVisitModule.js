@@ -1,13 +1,11 @@
+import { VisitService } from "../services/VisitService.js"
+
+const visitService = new VisitService();
+
 const loadContent = () => {
-  fetch("http://127.0.0.1:8000/api/visit/getMyVisits/Pendiente",
-    {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': "Bearer 2|yxcPDjc23t9wWR2Cf5GEEQxBHMZTHcbVnquQJzG0"
-      }
-    })
+  let token = localStorage.token
+
+  visitService.GetAllNextVisits(token)
     .then((response) => response.json())
     .then((response) => {
       let generator = document.getElementById('next-visits-generator')
@@ -17,7 +15,7 @@ const loadContent = () => {
 
         <div class="card  bg-base-100 shadow-xl mt-6 mx-3">
           <div class="card-body">
-          <h2 class="card-title text-red-400 font-bold text-2xl">${item.grocer.grocer_name}</h2>
+          <h2 class="card-title text-[#EB7063] font-bold text-2xl">${item.grocer.grocer_name}</h2>
           <p class="text-sm font-semibold">${item.grocer.address} #${item.grocer.zip_code}</p>
         </div>
           <div class="grid grid-cols-1 lg:flex md:justify-around mb-3">
@@ -38,7 +36,7 @@ const loadContent = () => {
           <div class="modal modal-bottom sm:modal-middle">
             <div class="modal-box">
               <label for="my-modal-${i}" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-              <h3 class="font-bold text-xl text-red-400">Detalle visita a: </h3>
+              <h3 class="font-bold text-xl text-[#EB7063]">Detalle visita a: </h3>
               <p class="text-black-400 text-lg font-semibold">${item.grocer.grocer_name}</p>
               <p class="font-semibold text-md text-right">Recibido por:
               <p class="text-right mb-5">${item.order.received_by}</p>
@@ -88,21 +86,13 @@ const loadContent = () => {
 
 function complete(id, checkId) {
 
+  let token = localStorage.token
   document.getElementById(`my-modal-confirm-${checkId}`).checked = false;
 
-  fetch(`http://127.0.0.1:8000/api/visit/updateStatus/${id}`,
-    {
-      method: 'PUT',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': "Bearer 2|yxcPDjc23t9wWR2Cf5GEEQxBHMZTHcbVnquQJzG0"
-      },
-      body: JSON.stringify({ status: "Realizado" })
-    })
+  visitService.Complete(id, token)
     .then((response) => response.json())
     .then((response) => {
-      
+
       let generator = document.getElementById('next-visits-generator')
       generator.innerHTML = ""
       generator.innerHTML += `

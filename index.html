@@ -11,8 +11,6 @@
   <link rel="stylesheet" href="./js/utils/notiflix-3.2.5.min.css" />
   <script src="./js/utils/notiflix-3.2.5.min.js"></script>
 
-  <script src="//cdn.jsdelivr.net/npm/pouchdb@7.3.1/dist/pouchdb.min.js"></script>
-
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/daisyui@2.31.0/dist/full.css" rel="stylesheet" type="text/css" />
@@ -22,8 +20,7 @@
 </head>
 
 <body>
-  <div class="hero min-h-screen"
-    style="background-image: url(./images/london.jpg);">
+  <div class="hero min-h-screen" style="background-image: url(./images/london.jpg);">
     <div class="hero-overlay bg-opacity-60"></div>
     <svg style="position: fixed;right: 0; left: 0; bottom: 0;" viewBox="0 0 1440 320" fill="25AC5B"
       xmlns="http://www.w3.org/2000/svg">
@@ -50,11 +47,13 @@
             <label class="label">
               <span class="label-text">Usuario:</span>
             </label>
-            <input type="text" id="emailInput" placeholder="usuario" name="username" class="input input-bordered w-full">
+            <input type="text" id="emailInput" placeholder="usuario" name="username"
+              class="input input-bordered w-full">
             <label class="label">
               <span class="label-text">Contraseña:</span>
             </label>
-            <input type="password" id="passwordInput" placeholder="*********" name="password" class="input input-bordered w-full" required>
+            <input type="password" id="passwordInput" placeholder="*********" name="password"
+              class="input input-bordered w-full" required>
             <button id="btnLogin" class="btn gap-2 mt-5 border-none bg-[#25AC5B]" style="width: 100%">
               Acceder
             </button>
@@ -94,7 +93,7 @@
     </div>
   </div>
   </div>
-  <!--<script src="./js/app.js"></script>-->
+  <script src="./js/app.js"></script>
   <script src="./js/modules/LoginModule.js" type="module"></script>
 </body>
 

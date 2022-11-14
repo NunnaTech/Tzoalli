@@ -1,14 +1,11 @@
+import { VisitService } from "../services/VisitService.js"
+
+const visitService = new VisitService();
 
 const loadContent = () => {
-  fetch("http://127.0.0.1:8000/api/visit/getMyVisits/En camino",
-    {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': "Bearer 2|yxcPDjc23t9wWR2Cf5GEEQxBHMZTHcbVnquQJzG0"
-      }
-    })
+  let token = localStorage.token
+
+  visitService.GetAllPendingVisits(token)
     .then((response) => response.json())
     .then((response) => {
 
@@ -87,18 +84,10 @@ const loadContent = () => {
 
 function deliver(id, checkId) {
 
+  let token = localStorage.token
   document.getElementById(`my-modal-confirm-${checkId}`).checked = false;
 
-  fetch(`http://127.0.0.1:8000/api/visit/updateStatus/${id}`,
-    {
-      method: 'PUT',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': "Bearer 2|yxcPDjc23t9wWR2Cf5GEEQxBHMZTHcbVnquQJzG0"
-      },
-      body: JSON.stringify({ status: "Realizado" })
-    })
+  visitService.Complete(id, token)
     .then((response) => response.json())
     .then((response) => {
       let generator = document.getElementById('pending-visits-generator')

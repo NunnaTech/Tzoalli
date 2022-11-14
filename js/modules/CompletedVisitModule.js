@@ -1,23 +1,21 @@
+import { VisitService } from "../services/VisitService.js"
+
+const visitService = new VisitService();
+
 const loadContent = () => {
-  fetch("http://127.0.0.1:8000/api/visit/getMyVisits/Realizado",
-    {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': "Bearer 2|yxcPDjc23t9wWR2Cf5GEEQxBHMZTHcbVnquQJzG0"
-      }
-    })
+  let token = localStorage.token
+
+  visitService.GetAllCompletedVisits(token)
     .then((response) => response.json())
     .then((response) => {
-
+      console.log(response)
       let generator = document.getElementById('completed-visits-generator')
       generator.innerHTML = ""
       response.data.data.map((item, i) => {
         generator.innerHTML += `
         <div class="card bg-base-100 shadow-xl mt-6 w-auto sm:flex-1 mx-3 sm:ml-0">
           <div class="card-body">
-            <h2 class="card-title text-red-400 font-bold text-2xl">${item.grocer.grocer_name}</h2>
+            <h2 class="card-title text-[#EB7063] font-bold text-2xl">${item.grocer.grocer_name}</h2>
             <p class="text-sm font-semibold">${item.grocer.address} #${item.grocer.zip_code}</p>
             <div class="card-actions justify-between h-8">
               <div class="badge mt-5 border-none bg-[#25AC5B] text-gray-100 py-3">Completado</div>
