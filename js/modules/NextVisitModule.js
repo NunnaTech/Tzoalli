@@ -15,10 +15,10 @@ const loadContent = () => {
 
         <div class="card  bg-base-100 shadow-xl mt-6 mx-3">
           <div class="card-body">
-          <h2 class="card-title text-[#EB7063] font-bold text-2xl">${item.grocer.grocer_name}</h2>
+          <h2 class="card-title font-bold text-2xl" style="color: #EB7063">${item.grocer.grocer_name}</h2>
           <p class="text-sm font-semibold">${item.grocer.address} #${item.grocer.zip_code}</p>
         </div>
-          <div class="grid grid-cols-1 lg:flex md:justify-around mb-3">
+          <div class="grid grid-cols-1 lg:flex md:justify-around mb-3 px-5">
             <label class="btn btn-outline btn-error modal-button mx-1" for="my-modal-confirm-${i}">Completar
               visita</label>
   
@@ -26,7 +26,7 @@ const loadContent = () => {
               <a href="./order.html" class="btn btn-outline btn-success modal-button mx-1">Iniciar
                 pedido</a>
               <a href="./observations.html" for="my-modal-6"
-                class="btn btn-outline btn-warning modal-button mx-1">Observaciones</a>
+                class="btn btn-outline btn-warning modal-button mx-0">Observaciones</a>
             </div>
           </div>
         </div>
@@ -36,9 +36,9 @@ const loadContent = () => {
           <div class="modal modal-bottom sm:modal-middle">
             <div class="modal-box">
               <label for="my-modal-${i}" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-              <h3 class="font-bold text-xl text-[#EB7063]">Detalle visita a: </h3>
+              <h3 class="font-bold text-xl" style="color: #EB7063">Detalle visita a: </h3>
               <p class="text-black-400 text-lg font-semibold">${item.grocer.grocer_name}</p>
-              <p class="font-semibold text-md text-right">Recibido por:
+              <p class="font-semibold text-md text-right style="color: #EB7063"">Recibido por:
               <p class="text-right mb-5">${item.order.received_by}</p>
               `
           +

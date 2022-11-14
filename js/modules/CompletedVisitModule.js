@@ -8,14 +8,13 @@ const loadContent = () => {
   visitService.GetAllCompletedVisits(token)
     .then((response) => response.json())
     .then((response) => {
-      console.log(response)
       let generator = document.getElementById('completed-visits-generator')
       generator.innerHTML = ""
       response.data.data.map((item, i) => {
         generator.innerHTML += `
         <div class="card bg-base-100 shadow-xl mt-6 w-auto sm:flex-1 mx-3 sm:ml-0">
           <div class="card-body">
-            <h2 class="card-title text-[#EB7063] font-bold text-2xl">${item.grocer.grocer_name}</h2>
+            <h2 class="card-title font-bold text-2xl" style="color: #EB7063">${item.grocer.grocer_name}</h2>
             <p class="text-sm font-semibold">${item.grocer.address} #${item.grocer.zip_code}</p>
             <div class="card-actions justify-between h-8">
               <div class="badge mt-5 border-none bg-[#25AC5B] text-gray-100 py-3">Completado</div>
@@ -29,9 +28,9 @@ const loadContent = () => {
         <div class="modal modal-bottom sm:modal-middle">
           <div class="modal-box">
             <label for="my-modal-${i}" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-            <h3 class="font-bold text-xl text-red-400">Detalle visita a: </h3>
+            <h3 class="font-bold text-xl" style="color: #EB7063">Detalle visita a: </h3>
             <p class="text-black-400 text-lg font-semibold">${item.grocer.grocer_name}</p>
-            <p class="font-semibold text-md text-right">Recibido por:
+            <p class="font-semibold text-md text-right" style="color: #EB7063">Recibido por:
             <p class="text-right mb-5">${item.order.received_by}</p>
             `
           +
