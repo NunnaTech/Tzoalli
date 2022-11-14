@@ -30,7 +30,7 @@
         </div>
         <div class="flex-none">
           <div class="tooltip tooltip-left" data-tip="cerrar sesión">
-            <button class="btn btn-square btn-ghost">
+            <button class="btn btn-square btn-ghost" id="btnLogout">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="inline-block w-5 h-5 stroke-current">>
                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -103,61 +103,75 @@
             </ul>
 
 
-            <div class="flex flex-col justify-around sm:flex-row items-center sm:justify-center">
-              <div class="card bg-base-100 shadow-xl mt-6 w-auto sm:flex-1 mx-5 sm:ml-0">
-                <div class="card-body">
-                  <h2 class="card-title text-red-400 font-bold text-2xl">Abarrotes La unión</h2>
-                  <p class="text-sm font-semibold">Calle Buenavista #20, Los girasoles 68223, Cuernavaca Morelos.</p>
-                  <div class="card-actions justify-between h-8">
-                    <div class="badge mt-5 bg-[#25AC5B] border-none text-gray-100 py-3">Completado</div>
-                    <label for="my-modal-6" class="btn btn-outline btn-success h-4 btn modal-button ">Ver
-                      detalle</label>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2" id="completed-visits-generator">
+
+              <div class="card bg-base-100 shadow-xl mt-3 w-auto sm:flex-1 mx-3 sm:ml-0">
+                <div class="animate-pulse flex card-body">
+                  <div class=" btn btn-disabled bg-slate-400 rounded"></div>
+                  <div class="flex-1 space-y-3 py-1">
+                    <div class="h-2 bg-slate-400 rounded"></div>
+                    <div class="h-2 bg-slate-400 rounded col-span-2"></div>
+                    <div class="space-y-3">
+                      <div class="grid grid-cols-4 gap-4">
+                        <div class="h-6 bg-slate-400 rounded col-span-2"></div>
+                        <div class="h-6 bg-slate-400 rounded col-span-2"></div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div class="card bg-base-100 shadow-xl mt-6 w-auto sm:flex-1 mx-5 sm:ml-0">
-                <div class="card-body">
-                  <h2 class="card-title text-red-400 font-bold text-2xl">Abarrotes La unión</h2>
-                  <p class="text-sm font-semibold">Calle Buenavista #20, Los girasoles 68223, Cuernavaca Morelos.</p>
-                  <div class="card-actions justify-between h-8">
-                    <div class="badge mt-5 border-none bg-[#25AC5B] text-gray-100 py-3">Completado</div>
-                    <label for="my-modal-6" class="btn btn-outline btn-success h-4 btn modal-button">Ver detalle</label>
+
+              <div class="card bg-base-100 shadow-xl mt-3 w-auto sm:flex-1 mx-3 sm:ml-0">
+                <div class="animate-pulse flex card-body">
+                  <div class=" btn btn-disabled bg-slate-400 rounded"></div>
+                  <div class="flex-1 space-y-3 py-1">
+                    <div class="h-2 bg-slate-400 rounded"></div>
+                    <div class="h-2 bg-slate-400 rounded col-span-2"></div>
+                    <div class="space-y-3">
+                      <div class="grid grid-cols-4 gap-4">
+                        <div class="h-6 bg-slate-400 rounded col-span-2"></div>
+                        <div class="h-6 bg-slate-400 rounded col-span-2"></div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
+
+              <div class="card bg-base-100 shadow-xl mt-3 w-auto sm:flex-1 mx-3 sm:ml-0">
+                <div class="animate-pulse flex card-body">
+                  <div class=" btn btn-disabled bg-slate-400 rounded"></div>
+                  <div class="flex-1 space-y-3 py-1">
+                    <div class="h-2 bg-slate-400 rounded"></div>
+                    <div class="h-2 bg-slate-400 rounded col-span-2"></div>
+                    <div class="space-y-3">
+                      <div class="grid grid-cols-4 gap-4">
+                        <div class="h-6 bg-slate-400 rounded col-span-2"></div>
+                        <div class="h-6 bg-slate-400 rounded col-span-2"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card bg-base-100 shadow-xl mt-3 w-auto sm:flex-1 mx-3 sm:ml-0">
+                <div class="animate-pulse flex card-body">
+                  <div class=" btn btn-disabled bg-slate-400 rounded"></div>
+                  <div class="flex-1 space-y-3 py-1">
+                    <div class="h-2 bg-slate-400 rounded"></div>
+                    <div class="h-2 bg-slate-400 rounded col-span-2"></div>
+                    <div class="space-y-3">
+                      <div class="grid grid-cols-4 gap-4">
+                        <div class="h-6 bg-slate-400 rounded col-span-2"></div>
+                        <div class="h-6 bg-slate-400 rounded col-span-2"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
           <br>
-
-
-          <!-- Put this part before </body> tag -->
-          <input type="checkbox" id="my-modal-6" class="modal-toggle" />
-          <div class="modal modal-bottom sm:modal-middle">
-            <div class="modal-box">
-              <label for="my-modal-6" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-              <h3 class="font-bold text-xl text-red-400">Detalle visita a: </h3>
-              <p class="text-black-400 text-lg font-semibold">Abarrotes La unión</p>
-              <p class="font-semibold text-md text-right">Recibido por:
-              <p class="text-right mb-5">Andres Miranda</p>
-              </p>
-              <p class="">5pzs Obleas azules $15.00</p>
-              <p class="">5pzs Obleas azules $15.00</p>
-              <p class="">5pzs Obleas azules $15.00</p>
-              <p class="">5pzs Obleas azules $15.00</p>
-              <p class="">5pzs Obleas azules $15.00</p>
-              <br>
-              <hr>
-              <br>
-              <div class="flex flex-row justify-between">
-                <h4 class="font-bold text-lg">Total: </h4>
-                <h4 class="font-bold text-lg self-end">$75.00</h4>
-              </div>
-              <div class="modal-action">
-                <a for="my-modal-6" href="./observations.html"
-                  class="btn bg-[#25AC5B] text-gray-100 border-none hover:bg-[#25AC5B]">Observaciones</a>
-              </div>
-            </div>
-          </div>
 
         </div>
       </main>
@@ -203,6 +217,10 @@
       </aside>
     </div>
   </div>
+  <script src="./js/modules/CompletedVisitModule.js" type="module"></script>
+
+  <script src="./js/modules/LogoutModule.js" type="module"></script>
+
 </body>
 
 </html>
