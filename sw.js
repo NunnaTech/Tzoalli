@@ -52,7 +52,9 @@ self.addEventListener('install', (event) => {
                 '/js/modules/PendingVisitModule.js',
                 '/js/modules/LoginModule.js',
                 '/js/modules/LogoutModule.js',
+                '/js/modules/ProductModule.js',
 
+                '/js/services/ProductService.js',
                 '/js/services/LoginService.js',
                 '/js/services/VisitService.js',
 

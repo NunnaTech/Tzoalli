@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
         rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/daisyui@2.31.0/dist/full.css" rel="stylesheet" type="text/css" />
-    <link href="./dist/output.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>Productos | Lista</title>
 </head>
 
@@ -31,7 +31,7 @@
                 </div>
                 <div class="flex-none">
                     <div class="tooltip tooltip-left" data-tip="cerrar sesión">
-                        <button class="btn btn-square btn-ghost">
+                        <button class="btn btn-square btn-ghost" id="btnLogout">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                 stroke="currentColor" class="inline-block w-5 h-5 stroke-current">>
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -62,8 +62,8 @@
                     <div class="card shadow-xl bg-white w-full py-10">
                         <div class="grid md:flex md:justify-center ml-5 mr-5">
                             <input type="text" placeholder="Nombre del producto..."
-                                class="input input-bordered text-black w-full" />
-                            <button class="btn bg-[#25AC5B] border-none w-auto mx-5 mt-4 md:mt-0">
+                                class="input input-bordered text-black w-full" id="searchValue" />
+                            <button class="btn bg-[#25AC5B] border-none w-auto mx-2 mt-4 md:mt-0" id="searchBtn">
                                 <svg class="stroke-1 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"
                                     viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -71,94 +71,95 @@
                                 </svg>
                                 Buscar producto
                             </button>
+                            <button class="btn bg-[#25AC5B] border-none w-auto mx-2 mt-4 md:mt-0" id="clearBtn">
+
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mr-2">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M12 9.75L14.25 12m0 0l2.25 2.25M14.25 12l2.25-2.25M14.25 12L12 14.25m-2.58 4.92l-6.375-6.375a1.125 1.125 0 010-1.59L9.42 4.83c.211-.211.498-.33.796-.33H19.5a2.25 2.25 0 012.25 2.25v10.5a2.25 2.25 0 01-2.25 2.25h-9.284c-.298 0-.585-.119-.796-.33z" />
+                                </svg>
+
+                                Limpiar
+                            </button>
                         </div>
                     </div>
 
-
-                    <div class="grid grid-cols-1 md:lg:grid-cols-3">
-
+                    <div class="grid grid-cols-1 md:lg:grid-cols-3" id="product-generator">
                         <div class="card w-auto bg-white shadow-xl p-4 m-5 mx-15 h-min">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                stroke="currentColor" class="mb-2 w-10 h-10 text-yellow-300 dark:text-gray-400">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
-                            </svg>
-                            <a>
-                                <h5 class="mb-2 text-2xl font-semibold tracking-tight text-black">Palanqueta de cacao
-                                </h5>
-                            </a>
-                            <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">Pequeña palanqueta de cacao
-                                espolvoreada con cacahuate tostado</p>
-                            <label for="my-modal" class="btn bg-[#F29C1F] border-none modal-button">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="stroke-1 h-6 w-6 mr-2">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
-                                </svg>
-                                Detalles
-                            </label>
+                            <div class="animate-pulse flex card-body">
+                                <div class="flex-1 space-y-3 py-1">
+                                    <div class="h-9 bg-slate-400 rounded"></div>
+                                    <div class="h-4  bg-slate-400 rounded col-span-2"></div>
+                                    <div class="space-y-3">
+                                        <div class="grid grid-cols-1 gap-4">
+                                            <div class=" btn btn-disabled h-6 bg-slate-400 rounded"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-
                         <div class="card w-auto bg-white shadow-xl p-4 m-5 mx-15 h-min">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                stroke="currentColor" class="mb-2 w-10 h-10 text-yellow-300 dark:text-gray-400">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
-                            </svg>
-                            <a>
-                                <h5 class="mb-2 text-2xl font-semibold tracking-tight text-black">Dulce de leche con
-                                    café
-                                </h5>
-                            </a>
-                            <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">Dulce suave de leche combinado
-                                con café tostado importado de oaxaca</p>
-                            <label for="my-modal" class="btn bg-[#F29C1F] border-none modal-button">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="stroke-1 h-6 w-6 mr-2">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
-                                </svg>
-                                Detalles
-                            </label>
+                            <div class="animate-pulse flex card-body">
+                                <div class="flex-1 space-y-3 py-1">
+                                    <div class="h-9 bg-slate-400 rounded"></div>
+                                    <div class="h-4  bg-slate-400 rounded col-span-2"></div>
+                                    <div class="space-y-3">
+                                        <div class="grid grid-cols-1 gap-4">
+                                            <div class=" btn btn-disabled h-6 bg-slate-400 rounded"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-
                         <div class="card w-auto bg-white shadow-xl p-4 m-5 mx-15 h-min">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                stroke="currentColor" class="mb-2 w-10 h-10 text-yellow-300 dark:text-gray-400">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
-                            </svg>
-                            <a>
-                                <h5 class="mb-2 text-2xl font-semibold tracking-tight text-black">Oblea Azucarada
-                                </h5>
-                            </a>
-                            <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">Hoja de oblea redonda
-                                espolvorada con azucar y canela en polvo</p>
-                            <label for="my-modal" class="btn bg-[#F29C1F] border-none modal-button">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="stroke-1 h-6 w-6 mr-2">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
-                                </svg>
-                                Detalles
-                            </label>
+                            <div class="animate-pulse flex card-body">
+                                <div class="flex-1 space-y-3 py-1">
+                                    <div class="h-9 bg-slate-400 rounded"></div>
+                                    <div class="h-4  bg-slate-400 rounded col-span-2"></div>
+                                    <div class="space-y-3">
+                                        <div class="grid grid-cols-1 gap-4">
+                                            <div class=" btn btn-disabled h-6 bg-slate-400 rounded"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-
-
-
-
-                        <!-- Modal de cada card -->
-                        <input type="checkbox" id="my-modal" class="modal-toggle" />
-                        <div class="modal modal-bottom sm:modal-middle">
-                            <div class="modal-box relative">
-                                <label for="my-modal"
-                                    class="btn bg-[#575F69] border-none btn-sm btn-circle absolute right-2 top-2">✕</label>
-                                <figure class="px-10 pt-10">
-                                    <img src="https://placeimg.com/400/225/arch" alt="Shoes" class="rounded-xl" />
-                                </figure>
-                                <div class="card-body items-center text-center">
-                                    <h2 class="text-lg">Palanqueta de cacao</h2>
-                                    <p class="font-bold">$12 cada pieza</p>
+                        <div class="card w-auto bg-white shadow-xl p-4 m-5 mx-15 h-min">
+                            <div class="animate-pulse flex card-body">
+                                <div class="flex-1 space-y-3 py-1">
+                                    <div class="h-9 bg-slate-400 rounded"></div>
+                                    <div class="h-4  bg-slate-400 rounded col-span-2"></div>
+                                    <div class="space-y-3">
+                                        <div class="grid grid-cols-1 gap-4">
+                                            <div class=" btn btn-disabled h-6 bg-slate-400 rounded"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card w-auto bg-white shadow-xl p-4 m-5 mx-15 h-min">
+                            <div class="animate-pulse flex card-body">
+                                <div class="flex-1 space-y-3 py-1">
+                                    <div class="h-9 bg-slate-400 rounded"></div>
+                                    <div class="h-4  bg-slate-400 rounded col-span-2"></div>
+                                    <div class="space-y-3">
+                                        <div class="grid grid-cols-1 gap-4">
+                                            <div class=" btn btn-disabled h-6 bg-slate-400 rounded"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card w-auto bg-white shadow-xl p-4 m-5 mx-15 h-min">
+                            <div class="animate-pulse flex card-body">
+                                <div class="flex-1 space-y-3 py-1">
+                                    <div class="h-9 bg-slate-400 rounded"></div>
+                                    <div class="h-4  bg-slate-400 rounded col-span-2"></div>
+                                    <div class="space-y-3">
+                                        <div class="grid grid-cols-1 gap-4">
+                                            <div class=" btn btn-disabled h-6 bg-slate-400 rounded"></div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -207,6 +208,8 @@
             </aside>
         </div>
     </div>
+    <script src="./js/modules/ProductModule.js" type="module"></script>
+    <script src="./js/modules/LogoutModule.js" type="module"></script>
 </body>
 
 </html>
