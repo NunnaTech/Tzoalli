@@ -88,9 +88,9 @@ self.addEventListener('install', (event) => {
 })
 
 
-//self.addEventListener('fetch', (event) => {
-//    
-//})
+self.addEventListener('fetch', (event) => {
+        
+})
 
 //Only cache
 //self.addEventListener('fetch', (event) => {
@@ -98,7 +98,7 @@ self.addEventListener('install', (event) => {
 //})
 
 //Cache with network fallback
-self.addEventListener('fetch', (event) => {
+/*self.addEventListener('fetch', (event) => {
     let call = null
     //Cache with network Fallbacks
 
@@ -122,4 +122,4 @@ self.addEventListener('fetch', (event) => {
 
     event.respondWith(call);
 
-})
+})*/
