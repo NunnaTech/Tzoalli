@@ -47,7 +47,8 @@ const loadContent = () => {
               <h4 class="font-bold text-lg self-end">$${item.order.total_order_amount}</h4>
             </div>
             <div class="modal-action">
-              <a for="my-modal-${i}" href="./observations.html"
+            <input value="${item.id}" hidden/>
+              <a for="my-modal-${i}" href="./observations.html?${item.id}"
                 class="btn bg-[#25AC5B] text-gray-100 border-none hover:bg-[#25AC5B]">Observaciones</a>
             </div>
           </div>

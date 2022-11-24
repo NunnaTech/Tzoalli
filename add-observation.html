@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@2.31.0/dist/full.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2/dist/tailwind.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link href="./dist/output.css" rel="stylesheet" />
+    <title>Añadir una observación</title>
+  </head>
+  <body>
+    <div class="grid md:grid-cols-2 sm:grid-cols-1 h-screen place-items-center p-5">
+        <div class="pt-3">
+            <h3 class="text-lg font-bold">Nueva observación</h3>
+            <p class="py-4">Titulo para el problema</p>
+            <input
+              type="text"
+              placeholder="Titulo"
+              class="input input-bordered w-full"
+            />
+            <p class="py-4">
+              Por favor ingresa una descripción detallada del desperfecto:
+            </p>
+            <textarea
+              class="textarea textarea-accent w-full"
+              placeholder="Desperfecto..."
+            ></textarea>
+            <div class="grid md:grid-cols-2 sm:grid-cols-1 justify-center">
+              <div class="btn-group btn-group-horizontal mt-2 w-auto mx-2">
+                <button class="btn bg-[#25AC5B] border-none" id="open">Abrir Cámara</button>
+                <button class="btn bg-[#25AC5B] border-none" id="take">Tomar Foto</button>
+              </div>
+
+              <button class="btn bg-[#25AC5B] border-none mt-2 w-auto mx-2">
+                <svg
+                  class="stroke-1 h-6 w-6 mr-2"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M11.35 3.836c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m8.9-4.414c.376.023.75.05 1.124.08 1.131.094 1.976 1.057 1.976 2.192V16.5A2.25 2.25 0 0118 18.75h-2.25m-7.5-10.5H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V18.75m-7.5-10.5h6.375c.621 0 1.125.504 1.125 1.125v9.375m-8.25-3l1.5 1.5 3-3.75"
+                  />
+                </svg>
+                Guardar
+              </button>
+            </div>
+          </div>
+
+        <div class="pt-3">
+            <video id="video" class="rounded-lg drop-shadow-md" autoplay style="height: 350px;width: 90%;"></video>
+            <div class="flex justify-center mb-5">
+                <div class="carousel carousel-center max-w-md p-4 space-x-4 bg-neutral rounded-box bg-white">
+                    <div class="carousel-item">
+                      <img id="photo" class="rounded-box" />
+                    </div>
+                  </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="./js/modules/AddObservationModule.js" type="module"></script>
+  </body>
+</html>
