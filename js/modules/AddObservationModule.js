@@ -63,15 +63,17 @@ const upload = async (i) => {
 btnSave.addEventListener('click', async () => {
     let imgs = []
 
+
     if (pictures.length > 0) {
         // pictures.map(async (p, i) => {
         //     if (upload(i) != null) {
         //         imgs.push(await upload(i))
         //     }
         // })
+        let blobimg = base64ImageToBlob(pictures[0])
         const { data, error } = await _supabase.storage
             .from('evidencias')
-            .upload(`public/${random()}`, pictures[0])
+            .upload(`public/${random()}.png`, blobimg)
         if (data != null) {
             imgs.push(`https://szdguzpruwwvtoimdfyk.supabase.co/storage/v1/object/public/evidencias/${data.path}`)
         }
@@ -89,9 +91,36 @@ btnSave.addEventListener('click', async () => {
             .then((response) => response.json())
             .then((data) => {
                 console.log(data)
+                location.href = '../.././observations.html?' + id;
             })
             .catch((error) => {
                 Notiflix.Notify.failure("Ocurrio un error al subir la información")
             })
     }
 })
+
+
+
+function base64ImageToBlob(str) {
+    // extract content type and base64 payload from original string
+    var pos = str.indexOf(';base64,');
+    var type = str.substring(5, pos);
+    var b64 = str.substr(pos + 8);
+
+    // decode base64
+    var imageContent = atob(b64);
+
+    // create an ArrayBuffer and a view (as unsigned 8-bit)
+    var buffer = new ArrayBuffer(imageContent.length);
+    var view = new Uint8Array(buffer);
+
+    // fill the view, using the decoded base64
+    for (var n = 0; n < imageContent.length; n++) {
+        view[n] = imageContent.charCodeAt(n);
+    }
+
+    // convert ArrayBuffer to Blob
+    var blob = new Blob([buffer], { type: type });
+
+    return blob;
+}

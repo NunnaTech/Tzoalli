@@ -1,5 +1,6 @@
 import { VisitService } from "../services/VisitService.js"
 
+let params = window.location;
 const visitService = new VisitService();
 
 const loadContent = () => {
@@ -10,7 +11,7 @@ const loadContent = () => {
     .then((response) => {
       let generator = document.getElementById('completed-visits-generator')
       generator.innerHTML = ""
-        console.log(response.data)
+      console.log(response.data)
       response.data.data.map((item, i) => {
         generator.innerHTML += `
         <div class="card bg-base-100 shadow-xl mt-6 w-auto sm:flex-1 mx-3 sm:ml-0">

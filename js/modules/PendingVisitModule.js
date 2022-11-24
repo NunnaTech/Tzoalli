@@ -8,7 +8,7 @@ const loadContent = () => {
   visitService.GetAllPendingVisits(token)
     .then((response) => response.json())
     .then((response) => {
-        console.log(response.data)
+      console.log(response.data)
       let generator = document.getElementById('pending-visits-generator')
       generator.innerHTML = ""
       response.data.data.map((item, i) => {
@@ -52,7 +52,7 @@ const loadContent = () => {
               <h4 class="font-bold text-lg self-end">$${item.order.total_order_amount}</h4>
             </div>
             <div class="btn-group">
-            <a for="my-modal-${i}" href="./order.html"
+            <a for="my-modal-${i}" href="./observations.html?${item.id}"
               class="btn bg-[#25AC5B] text-gray-100 border-none hover:bg-[#25AC5B]">Observaciones</a>
           </div>
           </div>
