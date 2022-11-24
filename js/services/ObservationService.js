@@ -11,4 +11,21 @@ export class ObservationService{
             },
         })
     }
+
+    saveObservations(token,obj,urls){
+        return fetch(getApiUrl(`observation`),{
+            method:'POST',
+            headers: {
+                'Content-type': 'application/json',
+                'Accept':'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                title: obj.title,
+                comment: obj.comment,
+                visit: {id:obj.id},
+                urls: urls,
+            }),
+        })
+    }
 }

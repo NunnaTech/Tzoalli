@@ -8,7 +8,7 @@ const loadContent = () => {
   visitService.GetAllPendingVisits(token)
     .then((response) => response.json())
     .then((response) => {
-
+        console.log(response.data)
       let generator = document.getElementById('pending-visits-generator')
       generator.innerHTML = ""
       response.data.data.map((item, i) => {
