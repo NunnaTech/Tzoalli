@@ -10,53 +10,64 @@ const loadContent = () => {
     .then((response) => response.json())
     .then((response) => {
       let generator = document.getElementById('completed-visits-generator')
+      let noContent = document.getElementById('noContent')
       generator.innerHTML = ""
-      console.log(response.data)
-      response.data.data.map((item, i) => {
-        generator.innerHTML += `
-        <div class="card bg-base-100 shadow-xl mt-6 w-auto sm:flex-1 mx-3 sm:ml-0">
-          <div class="card-body">
-            <h2 class="card-title font-bold text-2xl" style="color: #EB7063">${item.grocer.grocer_name}</h2>
-            <p class="text-sm font-semibold">${item.grocer.address} #${item.grocer.zip_code}</p>
-            <div class="card-actions justify-between h-8">
-              <div class="badge mt-5 border-none bg-[#25AC5B] text-gray-100 py-3">Completado</div>
-              <label for="my-modal-${i}" class="btn btn-outline btn-success h-4 btn modal-button">Ver detalle</label>
+
+      if (response.data.data.length === 0) {
+        noContent.innerHTML += `
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class=" h-10 mt-10 text-gray-400">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349m-16.5 11.65V9.35m0 0a3.001 3.001 0 003.75-.615A2.993 2.993 0 009.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 002.25 1.016c.896 0 1.7-.393 2.25-1.016a3.001 3.001 0 003.75.614m-16.5 0a3.004 3.004 0 01-.621-4.72L4.318 3.44A1.5 1.5 0 015.378 3h13.243a1.5 1.5 0 011.06.44l1.19 1.189a3 3 0 01-.621 4.72m-13.5 8.65h3.75a.75.75 0 00.75-.75V13.5a.75.75 0 00-.75-.75H6.75a.75.75 0 00-.75.75v3.75c0 .415.336.75.75.75z" />
+      </svg>
+        <h1 class="font-bold text-2xl drop-shadow-sm  text-center text-gray-400">No cuentas con visitias completadas</h1>
+        `
+      } else {
+        response.data.data.map((item, i) => {
+          generator.innerHTML += `
+          <div class="card bg-base-100 shadow-xl mt-6 w-auto sm:flex-1 mx-3 sm:ml-0">
+            <div class="card-body">
+              <h2 class="card-title font-bold text-2xl" style="color: #EB7063">${item.grocer.grocer_name}</h2>
+              <p class="text-sm font-semibold">${item.grocer.address} #${item.grocer.zip_code}</p>
+              <div class="card-actions justify-between h-8">
+                <div class="badge mt-5 border-none bg-[#25AC5B] text-gray-100 py-3">Completado</div>
+                <label for="my-modal-${i}" class="btn btn-outline btn-success h-4 btn modal-button">Ver detalle</label>
+              </div>
             </div>
           </div>
-        </div>
-  
-        <!-- Modal de detalles </body> tag -->
-        <input type="checkbox" id="my-modal-${i}" class="modal-toggle" />
-        <div class="modal modal-bottom sm:modal-middle">
-          <div class="modal-box">
-            <label for="my-modal-${i}" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-            <h3 class="font-bold text-xl" style="color: #EB7063">Detalle visita a: </h3>
-            <p class="text-black-400 text-lg font-semibold">${item.grocer.grocer_name}</p>
-            <p class="font-semibold text-md text-right" style="color: #EB7063">Recibido por:
-            <p class="text-right mb-5">${item.order.received_by}</p>
+    
+          <!-- Modal de detalles </body> tag -->
+          <input type="checkbox" id="my-modal-${i}" class="modal-toggle" />
+          <div class="modal modal-bottom sm:modal-middle">
+            <div class="modal-box">
+              <label for="my-modal-${i}" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+              <h3 class="font-bold text-xl" style="color: #EB7063">Detalle visita a: </h3>
+              <p class="text-black-400 text-lg font-semibold">${item.grocer.grocer_name}</p>
+              <p class="font-semibold text-md text-right" style="color: #EB7063">Recibido por:
+              <p class="text-right mb-5">${item.order.received_by}</p>
+              `
+            +
+            item.order.details.map((item_detail, i) => {
+              return `${item_detail.product.product_name} $${item_detail.product.product_price} | ${item_detail.quantity} Piezas`
+            }).join("<br>")
+            +
             `
-          +
-          item.order.details.map((item_detail, i) => {
-            return `${item_detail.product.product_name} $${item_detail.product.product_price} | ${item_detail.quantity} Piezas`
-          }).join("<br>")
-          +
-          `
-            <br>
-            <hr>
-            <br>
-            <div class="flex flex-row justify-between">
-              <h4 class="font-bold text-lg">Total: </h4>
-              <h4 class="font-bold text-lg self-end">$${item.order.total_order_amount}</h4>
-            </div>
-            <div class="modal-action">
-            <input value="${item.id}" hidden/>
-              <a for="my-modal-${i}" href="./observations.html?${item.id}"
-                class="btn bg-[#25AC5B] text-gray-100 border-none hover:bg-[#25AC5B]">Observaciones</a>
+              <br>
+              <hr>
+              <br>
+              <div class="flex flex-row justify-between">
+                <h4 class="font-bold text-lg">Total: </h4>
+                <h4 class="font-bold text-lg self-end">$${item.order.total_order_amount}</h4>
+              </div>
+              <div class="modal-action">
+              <input value="${item.id}" hidden/>
+                <a for="my-modal-${i}" href="./observations.html?${item.id}"
+                  class="btn bg-[#25AC5B] text-gray-100 border-none hover:bg-[#25AC5B]">Observaciones</a>
+              </div>
             </div>
           </div>
-        </div>
-            `
-      })
+              `
+        })
+      }
+
     })
 }
 
