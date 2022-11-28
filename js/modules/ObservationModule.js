@@ -28,16 +28,10 @@ const getParams = () => {
               </div>
 
               <div class="mt-6 lg:w-1/2 lg:mt-0 lg:mx-6 ">
-                <svg class="invisible w-0 h-0 md:h-20 md:w-20 md:invisible lg:visible" style="color: #2e3440"
-                  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                  stroke="currentColor" class="w-6 h-6">
-                  <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M12 9v3.75m0-10.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.75c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.57-.598-3.75h-.152c-3.196 0-6.1-1.249-8.25-3.286zm0 13.036h.008v.008H12v-.008z" />
-                </svg>
-                <p class="block mt-4 text-2xl font-semibold text-gray-800 dark:text-white md:text-3xl">
+                <p class="block mt-4 text-2xl font-semibold text-gray-700 md:text-3xl">
                 ${e.title}
                 </p>
-                <p class="mt-3 text-gray-500 dark:text-gray-300">
+                <p class="mt-3 text-gray-500 dark:text-gray-700">
                 ${e.comment}
                 </p>
               </div>
