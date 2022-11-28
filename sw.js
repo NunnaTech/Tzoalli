@@ -39,6 +39,7 @@ self.addEventListener('install', (event) => {
                 '/index.html',
                 '/dashboard.html',
                 '/observations.html',
+                'add-observation.html',
                 '/order.html',
                 '/products.html',
                 '/current-products.html',
@@ -53,7 +54,13 @@ self.addEventListener('install', (event) => {
                 '/js/modules/LoginModule.js',
                 '/js/modules/LogoutModule.js',
                 '/js/modules/ProductModule.js',
-
+                '/js/modules/OrderModule.js',
+                '/js/modules/ProductsInOrderModule.js',
+                '/js/modules/ObservationModule.js',
+                '/js/modules/AddObservationModule.js',
+                
+                '/js/services/ObservationService.js',
+                '/js/services/OrderService.js',
                 '/js/services/ProductService.js',
                 '/js/services/LoginService.js',
                 '/js/services/VisitService.js',
@@ -89,7 +96,7 @@ self.addEventListener('install', (event) => {
 
 
 self.addEventListener('fetch', (event) => {
-        
+
 })
 
 //Only cache
