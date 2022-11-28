@@ -2,6 +2,14 @@ import { VisitService } from "../services/VisitService.js"
 
 const visitService = new VisitService();
 
+
+function addOrder(item){
+  if (item){
+    localStorage.setItem("currentOrder", JSON.stringify(item));
+    location.href = '../../order.html'
+  }
+}
+
 const loadContent = () => {
   let token = localStorage.token
 
@@ -11,6 +19,7 @@ const loadContent = () => {
       let generator = document.getElementById('next-visits-generator')
       generator.innerHTML = ""
       response.data.data.map((item, i) => {
+
         generator.innerHTML += `
 
         <div class="card  bg-base-100 shadow-xl mt-6 mx-3">
@@ -21,10 +30,9 @@ const loadContent = () => {
           <div class="grid grid-cols-1 lg:flex md:justify-around mb-3 px-5">
             <label class="btn btn-outline btn-error modal-button mx-1" for="my-modal-confirm-${i}">Completar
               visita</label>
-  
+            <button id="btnOrder" onclick='addOrder(${JSON.stringify(item)})' class="btn btn-outline btn-success modal-button mx-1">Iniciar
+              pedido</button>
             <div class="grid grid-cols-1 mt-2 md:justify-center lg:flex md:mt-0">
-              <a href="./order.html" class="btn btn-outline btn-success modal-button mx-1">Iniciar
-                pedido</a>
               <a href="./observations.html" for="my-modal-6"
                 class="btn btn-outline btn-warning modal-button mx-0">Observaciones</a>
             </div>

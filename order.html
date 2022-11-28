@@ -29,7 +29,7 @@
         </div>
         <div class="flex-none">
           <div class="tooltip tooltip-left" data-tip="cerrar sesión">
-            <button class="btn btn-square btn-ghost">
+            <button class="btn btn-square btn-ghost" id="btnLogout">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="inline-block w-5 h-5 stroke-current">>
                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -59,11 +59,10 @@
             <div class="card shadow-xl bg-white w-full bg-neutral text-neutral-content lg:w-1/1">
               <div class="place-items-center p-5">
                 <div>
-                  <p class="text-black text-lg font-medium text-center">Orden para la tienda: Los 3
-                    Hermanos</p>
+                  <p id="title" class="text-black text-lg font-medium text-center"></p>
                 </div>
                 <div class="grid lg:flex justify-center">
-                  <a class="btn bg-[#25AC5B] border-none mt-2 w-auto mx-2" href="./products.html">
+                  <a id="addProducts" class="btn bg-[#25AC5B] border-none mt-2 w-auto mx-2" href="./products.html">
                     <svg class="stroke-1 h-6 w-6 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none"
                       viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                       <path strokeLinecap="round" strokeLinejoin="round"
@@ -71,7 +70,7 @@
                     </svg>
                     Agregar productos
                   </a>
-                  <a class="btn bg-[#EA7063] border-none mt-2 w-auto mx-2" href="./order.html">
+                  <a id="btnClearOrder" class="btn bg-[#EA7063] border-none mt-2 w-auto mx-2">
                     <svg class="stroke-1 h-6 w-6 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none"
                       viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                       <path stroke-linecap="round" stroke-linejoin="round"
@@ -96,119 +95,7 @@
                   <th class="bg-white">Quitar</th>
                 </tr>
               </thead>
-              <tbody>
-                <!-- row 1 -->
-                <tr class="hover">
-                  <td>
-                    <div class="flex items-center space-x-3">
-                      <div class="avatar">
-                        <div class="mask mask-squircle w-12 h-12">
-                          <img src="https://placeimg.com/400/225/arch" alt="Avatar Tailwind CSS Component" />
-                        </div>
-                      </div>
-                      <div>
-                        <div class="font-bold">Oblea Azucarada</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    12 Piezas
-                  </td>
-                  <td>$10</td>
-                  <td>$1200</td>
-                  <th>
-                    <button class="btn btn-ghost">
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                      </svg>
-                    </button>
-                  </th>
-                </tr>
-                <!-- row 2 -->
-                <tr class="hover">
-                  <td>
-                    <div class="flex items-center space-x-3">
-                      <div class="avatar">
-                        <div class="mask mask-squircle w-12 h-12">
-                          <img src="https://placeimg.com/400/225/arch" alt="Avatar Tailwind CSS Component" />
-                        </div>
-                      </div>
-                      <div>
-                        <div class="font-bold">Dulce de leche</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    20 Piezas
-                  </td>
-                  <td>$14</td>
-                  <td>$1200</td>
-                  <th>
-                    <button class="btn btn-ghost">
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                      </svg>
-                    </button>
-                  </th>
-                </tr>
-                <!-- row 3 -->
-                <tr class="hover">
-                  <td>
-                    <div class="flex items-center space-x-3">
-                      <div class="avatar">
-                        <div class="mask mask-squircle w-12 h-12">
-                          <img src="https://placeimg.com/400/225/arch" alt="Avatar Tailwind CSS Component" />
-                        </div>
-                      </div>
-                      <div>
-                        <div class="font-bold">Goma de café</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    20 Piezas
-                  </td>
-                  <td>$9</td>
-                  <td>$1200</td>
-                  <th>
-                    <button class="btn btn-ghost">
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                      </svg>
-                    </button>
-                  </th>
-                </tr>
-                <!-- row 4 -->
-                <tr class="hover">
-                  <td>
-                    <div class="flex items-center space-x-3">
-                      <div class="avatar">
-                        <div class="mask mask-squircle w-12 h-12">
-                          <img src="https://placeimg.com/400/225/arch" alt="Avatar Tailwind CSS Component" />
-                        </div>
-                      </div>
-                      <div>
-                        <div class="font-bold">Polvorón de cacahuate</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    12 Piezas
-                  </td>
-                  <td>$21</td>
-                  <td>$1200</td>
-                  <th>
-                    <button class="btn btn-ghost">
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                      </svg>
-                    </button>
-                  </th>
-                </tr>
+              <tbody id="bodyTable">
               </tbody>
             </table>
           </div>
@@ -216,8 +103,8 @@
           <div class="flex justify-center py-5 sticky bottom-0 z-50">
             <div class="card shadow-md bg-white w-full md:w-1/2 lg:w-1/2 bg-neutral text-neutral-content">
               <div class="mx-10">
-                <p class="text-black text-center text-lg font-medium py-2">Monto total: $1200</p>
-                <input type="text" placeholder="Nombre de quien recibe" class="input input-bordered w-full text-black" />
+                <p id="total_order_amount" class="text-black text-center text-lg font-medium py-2">Monto total: </p>
+                <input id="received_by" type="text" placeholder="Nombre de quien recibe" class="input input-bordered w-full text-black" />
               </div>
               <div class="flex justify-around p-5">
                 <div>
@@ -231,7 +118,7 @@
                   </label>
                 </div>
                 <div>
-                  <a class="btn bg-[#EA7063] border-none" href="next-visits.html">
+                  <a class="btn bg-[#EA7063] border-none" id="btnCancelOrder">
                     <svg class="stroke-1 h-6 w-6 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none"
                       viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -250,7 +137,7 @@
               <label for="my-modal-confirm" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
               <h3 class="text-lg font-bold pt-5">¿Crear una nueva orden?</h3>
               <p class="py-4">Una vez creada la orden, debes completarla</p>
-              <a href="pending-visits.html" class="btn bg-[#25AC5B] border-none w-full mt-2">
+              <a  id="btnConfirmOrder" class="btn bg-[#25AC5B] border-none w-full mt-2">
                 <svg class="stroke-1 h-6 w-6 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                   stroke-width="1.5" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round"
@@ -305,6 +192,18 @@
       </aside>
     </div>
   </div>
+
+  <script src="./js/modules/OrderModule.js" type="module"></script>
+  <script src="./js/modules/LogoutModule.js" type="module"></script>
+  <script>
+    function deleteProductStorage(i){
+      let products = JSON.parse(localStorage.getItem("orderProducts"))
+      products.splice(i, 1);
+      localStorage.setItem("orderProducts", JSON.stringify(products))
+      location.href = "./order.html"
+    }
+  </script>
+
 </body>
 
 </html>
