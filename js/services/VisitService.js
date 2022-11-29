@@ -15,7 +15,7 @@ export class VisitService {
     }
 
     GetAllPendingVisits(token) {
-        return fetch("http://127.0.0.1:8000/api/visit/getMyVisits/En camino",
+        return fetch(getApiUrl("visit/getMyVisits/En camino"),
             {
                 method: 'GET',
                 headers: {
@@ -27,7 +27,7 @@ export class VisitService {
     }
 
     GetAllNextVisits(token) {
-        return fetch("http://127.0.0.1:8000/api/visit/getMyVisits/Pendiente",
+        return fetch(getApiUrl("visit/getMyVisits/Pendiente"),
             {
                 method: 'GET',
                 headers: {
@@ -39,7 +39,7 @@ export class VisitService {
     }
 
     Complete(id, token) {
-        return fetch(`http://127.0.0.1:8000/api/visit/updateStatus/${id}`,
+        return fetch( getApiUrl(`visit/updateStatus/${id}`),
             {
                 method: 'PUT',
                 headers: {
