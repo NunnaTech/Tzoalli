@@ -7,8 +7,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/daisyui@2.31.0/dist/full.css" rel="stylesheet" type="text/css" />
-  <link href="./dist/output.css" rel="stylesheet" />
+  
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@2.42.1/dist/full.css" rel="stylesheet" type="text/css" />
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2/dist/tailwind.min.css" rel="stylesheet" type="text/css" />
+
   <title>Visitas | En proceso</title>
 </head>
 
@@ -223,6 +225,28 @@
     </div>
   </div>
   <script src="./js/modules/PendingVisitModule.js" type="module"></script>
+  <script>
+    function complete(id, checkId) {
+      let token = localStorage.token
+      fetch(`http://192.168.100.6:8000/api/visit/updateStatus/${id}`,
+        {
+          method: 'PUT',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify({ status: "Realizado" })
+        })
+        .then((response) => response.json())
+        .then((response) => {
+          window.location.replace("./completed-visits.html")
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    }
+  </script>
   <script src="./js/modules/LogoutModule.js" type="module"></script>
 </body>
 

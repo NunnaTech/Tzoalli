@@ -45,9 +45,8 @@ const loadContent = () => {
                     <a>
                         <h5 class="mb-2 text-2xl font-semibold tracking-tight text-black">${item.product_name}</h5>
                     </a>
-                    <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">Hoja de oblea redonda
-                        espolvorada con azucar y canela en polvo</p>
-                    <label for="my-modal-${i}" class="btn bg-[#F29C1F] border-none modal-button">
+                    <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">${item.description}</p>
+                    <label for="my-modal-${i}" class="btn bg-[#F29C1F] border-none modal-button" style="background-color: #ecc013; color: white">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                             stroke-width="1.5" stroke="currentColor" class="stroke-1 h-6 w-6 mr-2">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -110,9 +109,8 @@ searchBtn.addEventListener('click', () => {
                     <a>
                         <h5 class="mb-2 text-2xl font-semibold tracking-tight text-black">${item.product_name}</h5>
                     </a>
-                    <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">Hoja de oblea redonda
-                        espolvorada con azucar y canela en polvo</p>
-                    <label for="my-modal-${i}" class="btn bg-[#F29C1F] border-none modal-button">
+                    <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">${item.description}</p>
+                    <label for="my-modal-${i}" class="btn bg-[#F29C1F] border-none modal-button"  style="background-color: #ecc013; color: white">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                             stroke-width="1.5" stroke="currentColor" class="stroke-1 h-6 w-6 mr-2">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -133,7 +131,7 @@ searchBtn.addEventListener('click', () => {
                         </figure>
                         <div class="card-body items-center text-center">
                             <h2 class="text-lg">${item.product_name}</h2>
-                            <p class="font-bold">$${item.product_price} cada pieza</p>
+                            <p class="font-bold">$ ${item.product_price} cada pieza</p>
                         </div>
                     </div>
                 </div>

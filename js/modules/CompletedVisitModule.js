@@ -15,10 +15,10 @@ const loadContent = () => {
 
       if (response.data.data.length === 0) {
         noContent.innerHTML += `
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class=" h-10 mt-10 text-gray-400">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="text-gray-400" style="height:50px; width:50px; margin-top:50px;">>
         <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349m-16.5 11.65V9.35m0 0a3.001 3.001 0 003.75-.615A2.993 2.993 0 009.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 002.25 1.016c.896 0 1.7-.393 2.25-1.016a3.001 3.001 0 003.75.614m-16.5 0a3.004 3.004 0 01-.621-4.72L4.318 3.44A1.5 1.5 0 015.378 3h13.243a1.5 1.5 0 011.06.44l1.19 1.189a3 3 0 01-.621 4.72m-13.5 8.65h3.75a.75.75 0 00.75-.75V13.5a.75.75 0 00-.75-.75H6.75a.75.75 0 00-.75.75v3.75c0 .415.336.75.75.75z" />
       </svg>
-        <h1 class="font-bold text-2xl drop-shadow-sm  text-center text-gray-400">No cuentas con visitias completadas</h1>
+        <h1 class="font-bold text-2xl drop-shadow-sm  text-center text-gray-100">No cuentas con visitas completadas</h1>
         `
       } else {
         response.data.data.map((item, i) => {
@@ -28,7 +28,7 @@ const loadContent = () => {
               <h2 class="card-title font-bold text-2xl" style="color: #EB7063">${item.grocer.grocer_name}</h2>
               <p class="text-sm font-semibold">${item.grocer.address} #${item.grocer.zip_code}</p>
               <div class="card-actions justify-between h-8">
-                <div class="badge mt-5 border-none bg-[#25AC5B] text-gray-100 py-3">Completado</div>
+                <div class="badge mt-5 border-none bg-[#25AC5B] text-gray-100 py-3" style="background-color: #25ac5b; color: white">Completado</div>
                 <label for="my-modal-${i}" class="btn btn-outline btn-success h-4 btn modal-button">Ver detalle</label>
               </div>
             </div>
@@ -60,7 +60,7 @@ const loadContent = () => {
               <div class="modal-action">
               <input value="${item.id}" hidden/>
                 <a for="my-modal-${i}" href="./observations.html?${item.id}"
-                  class="btn bg-[#25AC5B] text-gray-100 border-none hover:bg-[#25AC5B]">Observaciones</a>
+                  class="btn bg-[#25AC5B] text-gray-100 border-none hover:bg-[#25AC5B]" style="background-color: #25ac5b; color: white">Observaciones</a>
               </div>
             </div>
           </div>

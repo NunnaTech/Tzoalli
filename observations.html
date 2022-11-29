@@ -6,8 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/daisyui@2.31.0/dist/full.css" rel="stylesheet" type="text/css" />
-  <link href="./dist/output.css" rel="stylesheet" />
+
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@2.42.1/dist/full.css" rel="stylesheet" type="text/css" />
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2/dist/tailwind.min.css" rel="stylesheet" type="text/css" />
+
   <title>Observaciones| Lista</title>
 </head>
 
@@ -59,7 +61,8 @@
               <div class="grid md:flex md:justify-center ml-5 mr-5">
                 <input type="text" placeholder="Título de la observación..."
                   class="input input-bordered text-black w-full" id="searchValue" />
-                <button class="btn bg-[#25AC5B] hover:bg-[#25AC5B] border-none w-auto mx-2 mt-4 md:mt-0" id="searchBtn">
+                <button class="btn bg-[#25AC5B] hover:bg-[#25AC5B] border-none w-auto mx-2 mt-4 md:mt-0" id="searchBtn"
+                  style="background-color: #25ac5b; color: white">
                   <svg class="stroke-1 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                     stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -80,7 +83,7 @@
                 </a>
 
                 <a class="btn bg-[#EA7063] hover:bg-[#EA7063] border-none mx-2 md:mr-5 mt-2 md:mt-0"
-                  href="./pending-visits.html">
+                  style="background-color:#EB7063; color: white" href="./pending-visits.html">
                   <svg class="stroke-1 h-5 w-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                     stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3" />

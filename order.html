@@ -6,8 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/daisyui@2.31.0/dist/full.css" rel="stylesheet" type="text/css" />
-  <link href="./dist/output.css" rel="stylesheet">
+  
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@2.42.1/dist/full.css" rel="stylesheet" type="text/css" />
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2/dist/tailwind.min.css" rel="stylesheet" type="text/css" />
+
   <title>Orden | Nueva orden</title>
 </head>
 
@@ -62,7 +64,7 @@
                   <p id="title" class="text-black text-lg font-medium text-center"></p>
                 </div>
                 <div class="grid lg:flex justify-center">
-                  <a id="addProducts" class="btn bg-[#25AC5B] border-none mt-2 w-auto mx-2" href="./products.html">
+                  <a id="addProducts" class="btn bg-[#25AC5B] border-none mt-2 w-auto mx-2" href="./products.html" style="background-color: #25ac5b; color: white">
                     <svg class="stroke-1 h-6 w-6 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none"
                       viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                       <path strokeLinecap="round" strokeLinejoin="round"
@@ -70,7 +72,7 @@
                     </svg>
                     Agregar productos
                   </a>
-                  <a id="btnClearOrder" class="btn bg-[#EA7063] border-none mt-2 w-auto mx-2">
+                  <a id="btnClearOrder" class="btn bg-[#EA7063] border-none mt-2 w-auto mx-2" style="background-color:#EB7063; color: white">
                     <svg class="stroke-1 h-6 w-6 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none"
                       viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                       <path stroke-linecap="round" stroke-linejoin="round"
@@ -104,11 +106,12 @@
             <div class="card shadow-md bg-white w-full md:w-1/2 lg:w-1/2 bg-neutral text-neutral-content">
               <div class="mx-10">
                 <p id="total_order_amount" class="text-black text-center text-lg font-medium py-2">Monto total: </p>
-                <input id="received_by" type="text" placeholder="Nombre de quien recibe" class="input input-bordered w-full text-black" />
+                <input id="received_by" type="text" placeholder="Nombre de quien recibe"
+                  class="input input-bordered w-full text-black" />
               </div>
               <div class="flex justify-around p-5">
                 <div>
-                  <label class="btn bg-[#25AC5B] border-none" for="my-modal-confirm">
+                  <label class="btn bg-[#25AC5B] border-none" for="my-modal-confirm" style="background-color: #25ac5b; color: white">
                     <svg class="stroke-1 h-6 w-6 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none"
                       viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                       <path stroke-linecap="round" stroke-linejoin="round"
@@ -118,7 +121,7 @@
                   </label>
                 </div>
                 <div>
-                  <a class="btn bg-[#EA7063] border-none" id="btnCancelOrder">
+                  <a class="btn bg-[#EA7063] border-none" id="btnCancelOrder" style="background-color:#EB7063; color: white">
                     <svg class="stroke-1 h-6 w-6 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none"
                       viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -137,7 +140,7 @@
               <label for="my-modal-confirm" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
               <h3 class="text-lg font-bold pt-5">¿Crear una nueva orden?</h3>
               <p class="py-4">Una vez creada la orden, debes completarla</p>
-              <a  id="btnConfirmOrder" class="btn bg-[#25AC5B] border-none w-full mt-2">
+              <a id="btnConfirmOrder" class="btn bg-[#25AC5B] border-none w-full mt-2">
                 <svg class="stroke-1 h-6 w-6 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                   stroke-width="1.5" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round"
@@ -196,7 +199,7 @@
   <script src="./js/modules/OrderModule.js" type="module"></script>
   <script src="./js/modules/LogoutModule.js" type="module"></script>
   <script>
-    function deleteProductStorage(i){
+    function deleteProductStorage(i) {
       let products = JSON.parse(localStorage.getItem("orderProducts"))
       products.splice(i, 1);
       localStorage.setItem("orderProducts", JSON.stringify(products))

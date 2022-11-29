@@ -88,11 +88,11 @@ const loadContent = () => {
                     </div>
                 </div>
             `
-        }).join("")
-    })
-    .catch((err) => {
-        console.log("[ERROR]:" + err)
-    })
+            }).join("")
+        })
+        .catch((err) => {
+            console.log("[ERROR]:" + err)
+        })
 
 }
 
@@ -124,7 +124,7 @@ searchBtn.addEventListener('click', () => {
                     </h5>
                 </a>
                 <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">${item.description} cada pieza</p>
-                <label for="my-modal" class="btn bg-[#F29C1F] border-none modal-button">
+                <label for="my-modal" class="btn border-none modal-button" style="background-color: #ecc013; color: white">
                     <svg class="stroke-1 h-6 w-6 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none"
                         viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round"
@@ -147,7 +147,7 @@ searchBtn.addEventListener('click', () => {
                                     <p class="font-bold">${item.product_price} cada pieza</p>
                                     <div class="card-actions justify-center">
                                         <input type="number" placeholder="Cantidad"
-                                            class="input input-bordered w-full text-black lg:w-96" min="1" />
+                                            class="input input-bordered w-full text-black lg:w-96" min="1" value="1"/>
                                         <button class="btn bg-[#25AC5B] border-none w-full mt-2" id="btnAddProduct${i}">
                                             <svg class="stroke-1 h-6 w-6 mr-2" xmlns="http://www.w3.org/2000/svg"
                                                 fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -171,7 +171,7 @@ searchBtn.addEventListener('click', () => {
 
 const searchInput = document.getElementById('searchValue')
 searchInput.addEventListener('input', (e) => {
-    
+
     if (e.target.value === "") {
         generateFakeCards()
         loadContent()

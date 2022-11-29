@@ -14,10 +14,10 @@ const loadContent = () => {
 
       if (response.data.data.length === 0) {
         noContent.innerHTML += `
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class=" h-10 mt-10 text-gray-400">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="text-gray-400" style="height:50px; width:50px; margin-top:50px;">>
         <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349m-16.5 11.65V9.35m0 0a3.001 3.001 0 003.75-.615A2.993 2.993 0 009.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 002.25 1.016c.896 0 1.7-.393 2.25-1.016a3.001 3.001 0 003.75.614m-16.5 0a3.004 3.004 0 01-.621-4.72L4.318 3.44A1.5 1.5 0 015.378 3h13.243a1.5 1.5 0 011.06.44l1.19 1.189a3 3 0 01-.621 4.72m-13.5 8.65h3.75a.75.75 0 00.75-.75V13.5a.75.75 0 00-.75-.75H6.75a.75.75 0 00-.75.75v3.75c0 .415.336.75.75.75z" />
       </svg>
-        <h1 class="font-bold text-2xl drop-shadow-sm  text-center text-gray-400">No cuentas con visitias en proceso</h1>
+        <h1 class="font-bold text-2xl drop-shadow-sm  text-center text-gray-400">No cuentas con visitas en proceso</h1>
         `
       } else {
         response.data.data.map((item, i) => {
@@ -75,7 +75,7 @@ const loadContent = () => {
               <label for="my-modal-confirm-${i}" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
               <h3 class="text-lg font-bold pt-5">¿Estás seguro de entregar el pedido?</h3>
               <p class="py-4">Una vez marcado como "entregado" no podras deshacer el cambio!</p>
-              <button class="btn bg-[#25AC5B] border-none w-full mt-2" id="deliverBtn" onclick='deliver(${item.id},${i})'>
+              <button class="btn bg-[#25AC5B] border-none w-full mt-2" id="deliverBtn" onclick='complete(${item.id},${i})'>
                 <svg class="stroke-1 h-6 w-6 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                   stroke-width="1.5" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round"
@@ -93,83 +93,5 @@ const loadContent = () => {
     })
 }
 
-function deliver(id, checkId) {
-
-  let token = localStorage.token
-  document.getElementById(`my-modal-confirm-${checkId}`).checked = false;
-
-  visitService.Complete(id, token)
-    .then((response) => response.json())
-    .then((response) => {
-      let generator = document.getElementById('pending-visits-generator')
-      generator.innerHTML = ""
-      generator.innerHTML += `
-      <div class="card bg-base-100 shadow-xl mt-3 w-auto sm:flex-1 mx-3 sm:ml-0">
-      <div class="animate-pulse flex card-body">
-        <div class=" btn btn-disabled bg-slate-400 rounded"></div>
-        <div class="flex-1 space-y-3 py-1">
-          <div class="h-2 bg-slate-400 rounded"></div>
-          <div class="h-2 bg-slate-400 rounded col-span-2"></div>
-          <div class="space-y-3">
-            <div class="grid grid-cols-4 gap-4">
-              <div class="h-6 bg-slate-400 rounded col-span-2"></div>
-              <div class="h-6 bg-slate-400 rounded col-span-2"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="card bg-base-100 shadow-xl mt-3 w-auto sm:flex-1 mx-3 sm:ml-0">
-    <div class="animate-pulse flex card-body">
-      <div class=" btn btn-disabled bg-slate-400 rounded"></div>
-      <div class="flex-1 space-y-3 py-1">
-        <div class="h-2 bg-slate-400 rounded"></div>
-        <div class="h-2 bg-slate-400 rounded col-span-2"></div>
-        <div class="space-y-3">
-          <div class="grid grid-cols-4 gap-4">
-            <div class="h-6 bg-slate-400 rounded col-span-2"></div>
-            <div class="h-6 bg-slate-400 rounded col-span-2"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="card bg-base-100 shadow-xl mt-3 w-auto sm:flex-1 mx-3 sm:ml-0">
-  <div class="animate-pulse flex card-body">
-    <div class=" btn btn-disabled bg-slate-400 rounded"></div>
-    <div class="flex-1 space-y-3 py-1">
-      <div class="h-2 bg-slate-400 rounded"></div>
-      <div class="h-2 bg-slate-400 rounded col-span-2"></div>
-      <div class="space-y-3">
-        <div class="grid grid-cols-4 gap-4">
-          <div class="h-6 bg-slate-400 rounded col-span-2"></div>
-          <div class="h-6 bg-slate-400 rounded col-span-2"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="card bg-base-100 shadow-xl mt-3 w-auto sm:flex-1 mx-3 sm:ml-0">
-<div class="animate-pulse flex card-body">
-  <div class=" btn btn-disabled bg-slate-400 rounded"></div>
-  <div class="flex-1 space-y-3 py-1">
-    <div class="h-2 bg-slate-400 rounded"></div>
-    <div class="h-2 bg-slate-400 rounded col-span-2"></div>
-    <div class="space-y-3">
-      <div class="grid grid-cols-4 gap-4">
-        <div class="h-6 bg-slate-400 rounded col-span-2"></div>
-        <div class="h-6 bg-slate-400 rounded col-span-2"></div>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-      `
-      loadContent()
-    })
-}
 
 loadContent()

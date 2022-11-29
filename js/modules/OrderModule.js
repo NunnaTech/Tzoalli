@@ -56,6 +56,7 @@ const loadContent = () => {
     let total_amount = 0;
     let order = JSON.parse(localStorage.getItem('currentOrder'))
     let products = JSON.parse(localStorage.getItem('orderProducts'))
+    console.log(JSON.parse(localStorage.getItem('currentOrder')))
     let title = document.getElementById("title")
     title.innerText = `Pedido para la tienda ${order.grocer.grocer_name}`
     let totalAmount = document.getElementById("total_order_amount")

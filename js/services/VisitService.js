@@ -39,7 +39,7 @@ export class VisitService {
     }
 
     Complete(id, token) {
-        return fetch( getApiUrl(`visit/updateStatus/${id}`),
+        return fetch(getApiUrl(`visit/updateStatus/${id}`),
             {
                 method: 'PUT',
                 headers: {
