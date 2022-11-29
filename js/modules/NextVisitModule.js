@@ -33,7 +33,7 @@ const loadContent = () => {
             <button id="btnOrder" onclick='addOrder(${JSON.stringify(item)})' class="btn btn-outline btn-success modal-button mx-1">Iniciar
               pedido</button>
             <div class="grid grid-cols-1 mt-2 md:justify-center lg:flex md:mt-0">
-              <a href="./observations.html" for="my-modal-6"
+              <a href="./observations.html?${item.id}" for="my-modal-6"
                 class="btn btn-outline btn-warning modal-button mx-0">Observaciones</a>
             </div>
           </div>
@@ -63,7 +63,7 @@ const loadContent = () => {
                 <h4 class="font-bold text-lg self-end">$${item.order.total_order_amount}</h4>
               </div>
               <div class="modal-action">
-                <a for="my-modal-${i}" href="./observations.html"
+                <a for="my-modal-${i}" href="./observations.html?${item.id}"
                   class="btn bg-[#25AC5B] text-gray-100 border-none hover:bg-[#25AC5B]">Observaciones</a>
               </div>
             </div>
