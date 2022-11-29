@@ -53,56 +53,19 @@ btnConfirm.addEventListener('click', function(){
 })
 
 const loadContent = () => {
+    let total_amount = 0;
     let order = JSON.parse(localStorage.getItem('currentOrder'))
     let products = JSON.parse(localStorage.getItem('orderProducts'))
     let title = document.getElementById("title")
     title.innerText = `Pedido para la tienda ${order.grocer.grocer_name}`
     let totalAmount = document.getElementById("total_order_amount")
-    totalAmount.innerText = `Monto total $${order.order.total_order_amount}`
 
     let generator = document.getElementById('bodyTable')
     generator.innerHTML = ""
-    order.order.details.map((item_detail, i) => {
-            generator.innerHTML += `
-            <tr class="hover">
-                <td>
-                    <div class="flex items-center space-x-3">
-                        <div class="avatar">
-                        <div class="mask mask-squircle w-12 h-12">
-                            <img src="${item_detail.product.product_image}" alt="Avatar Tailwind CSS Component" />
-                        </div>
-                        </div>
-                        <div>
-                        <div class="font-bold">${item_detail.product.product_name}</div>
-                        </div>
-                    </div>
-                </td>
-                <td>
-                    ${item_detail.quantity}
-                </td>
-                <td>${item_detail.product.product_price}</td>
-                <td>${item_detail.product.product_price * item_detail.quantity}</td>
-                <th>
-                <button id="btnDeleteProduct" class="btn btn-ghost">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                    stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
-                </th>
-            </tr>`
-
-        let btnDelete = document.getElementById("btnDeleteProduct")
-
-        btnDelete.addEventListener('click', function(){
-            order.order.details.splice(i, 1);
-            localStorage.setItem("currentOrder", JSON.stringify(order))
-        })
-    }).join("<br>")
-    
     if (products != null)
     {
         products.map((item_detail, i) => {
+            total_amount = total_amount + (item_detail.quantity * item_detail.product_price)
             generator.innerHTML += `
             <tr class="hover">
                 <td>
@@ -133,6 +96,6 @@ const loadContent = () => {
             </tr>`
     }).join("<br>")
     }
-
+    totalAmount.innerText = `Monto total $${total_amount}`
 }
 loadContent()
