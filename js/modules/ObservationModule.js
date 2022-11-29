@@ -15,34 +15,28 @@ const getParams = () => {
         evidences.insertAdjacentHTML(
           "beforeend",
           `
-            <div class="card w-11/12 bg-base-100 shadow-xl mt-6">
-                <div class="card-body">
-                  <div class="flex">
-                    <div class="flex items-center">
-                      <svg
-                        style="width: 64px; height: 64px; color: #2e3440"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          fill="currentColor"
-                          d="M12,18H6V14H12M21,14V12L20,7H4L3,12V14H4V20H14V14H18V20H20V14M20,4H4V6H20V4Z"
-                        />
-                      </svg>
-                    </div>
-                    <div class="flex-col ml-6">
-                      <h2 class="card-title">${e.title}</h2>
-                      <p class="text-justify mt-3">${e.comment}</p>
-                      <div class="card-actions justify-start mt-3">
-                      ${e.evidences.map((obj, index) => {
+          <div class="bg-base-100 shadow-xl card container px-6 py-5 mx-auto mt-7 w-5/6">
+            <div class="lg:-mx-6 lg:flex lg:items-center">
+              <div class="object-cover carousel rounded-box w-full lg:mx-6 lg:w-1/2 rounded-xl h-72 lg:h-46">
+                ${e.evidences.map((obj, index) => {
             return ` 
-                        <img src="${obj.evidence_url}" height="100px" width="100px" class="rounded-box"/>
-                      `
+                  <div class="carousel-item w-full">
+                  <img src="${obj.evidence_url}"  class="w-full"/>
+                </div>        
+                                  `
           }).join("")}
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
+
+              <div class="mt-6 lg:w-1/2 lg:mt-0 lg:mx-6 ">
+                <p class="block mt-4 text-2xl font-semibold text-gray-700 md:text-3xl">
+                ${e.title}
+                </p>
+                <p class="mt-3 text-gray-500 dark:text-gray-700">
+                ${e.comment}
+                </p>
+              </div>
+            </div>
+          </div>
             `
         );
       });
