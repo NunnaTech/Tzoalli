@@ -20,7 +20,6 @@ const loadContent = () => {
       let noContent = document.getElementById('noContent')
       generator.innerHTML = ""
 
-      console.log(response)
       if (response.data.data.length === 0) {
         noContent.innerHTML += `
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class=" h-10 mt-10 text-gray-400">

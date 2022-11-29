@@ -6,22 +6,22 @@ let btnConfirm = document.getElementById("btnConfirmOrder")
 let btnCancelOrder = document.getElementById("btnCancelOrder")
 let btnClearOrder = document.getElementById("btnClearOrder")
 
-btnClearOrder.addEventListener('click', function(){
+btnClearOrder.addEventListener('click', function () {
     localStorage.removeItem("orderProducts")
     loadContent()
 })
 
-btnCancelOrder.addEventListener('click', function(){
+btnCancelOrder.addEventListener('click', function () {
     localStorage.removeItem("currentOrder")
     localStorage.removeItem("orderProducts")
-    location.href = "../../next-visits.html" 
+    location.href = "../../next-visits.html"
 })
 
-btnConfirm.addEventListener('click', function(){
+btnConfirm.addEventListener('click', function () {
 
-    if (document.getElementById("received_by").value != null && document.getElementById("received_by").value != "")
-    {
+    if (document.getElementById("received_by").value != null && document.getElementById("received_by").value != "") {
         let products = JSON.parse(localStorage.getItem("orderProducts"));
+        let { id } = JSON.parse(localStorage.getItem("currentOrder"))
         let list_products = [];
         products.forEach(element => {
             list_products.push({
@@ -34,19 +34,19 @@ btnConfirm.addEventListener('click', function(){
         orderService.StoreOrder(token, {
             received_by: document.getElementById("received_by").value,
             total_order_amount: 0,
+            visit_id: id,
             products: list_products
         })
-        .then((response) => response.json())
-        .then((response) => {
-            if (response.status_code == 201)
-            {
-                location.href = "../../pending-visits.html"
-            } else {
-                alert("Petición no completada")
-            }
-        }).catch((err) => {
-            console.log("[ERROR]: " + err)
-        })
+            .then((response) => response.json())
+            .then((response) => {
+                if (response.status_code == 201) {
+                    location.href = "../../pending-visits.html"
+                } else {
+                    alert("Petición no completada")
+                }
+            }).catch((err) => {
+                console.log("[ERROR]: " + err)
+            })
     } else {
         alert("No se ingresó aún el nombre de quien recibe")
     }
@@ -62,8 +62,7 @@ const loadContent = () => {
 
     let generator = document.getElementById('bodyTable')
     generator.innerHTML = ""
-    if (products != null)
-    {
+    if (products != null) {
         products.map((item_detail, i) => {
             total_amount = total_amount + (item_detail.quantity * item_detail.product_price)
             generator.innerHTML += `
@@ -94,7 +93,7 @@ const loadContent = () => {
                 </button>
                 </th>
             </tr>`
-    }).join("<br>")
+        }).join("<br>")
     }
     totalAmount.innerText = `Monto total $${total_amount}`
 }

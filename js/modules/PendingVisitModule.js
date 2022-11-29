@@ -75,7 +75,7 @@ const loadContent = () => {
               <label for="my-modal-confirm-${i}" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
               <h3 class="text-lg font-bold pt-5">¿Estás seguro de entregar el pedido?</h3>
               <p class="py-4">Una vez marcado como "entregado" no podras deshacer el cambio!</p>
-              <button class="btn bg-[#25AC5B] border-none w-full mt-2" id="deliverBtn" onclick='deliver(${item.id},${i});'>
+              <button class="btn bg-[#25AC5B] border-none w-full mt-2" id="deliverBtn" onclick='deliver(${item.id},${i})'>
                 <svg class="stroke-1 h-6 w-6 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                   stroke-width="1.5" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round"

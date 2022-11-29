@@ -14,11 +14,12 @@ export class OrderService {
             body: JSON.stringify({
                 received_by: order.received_by,
                 total_order_amount: order.total_order_amount,
+                visit_id: order.visit_id,
                 products: order.products
             })
         })
     }
 
-    
+
 }
 
