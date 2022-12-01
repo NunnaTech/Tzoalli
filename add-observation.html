@@ -5,15 +5,19 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Notifications Notiflix -->
+  <link rel="stylesheet" href="./js/utils/notiflix-3.2.5.min.css" />
+  <script src="./js/utils/notiflix-3.2.5.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <link href="https://cdn.jsdelivr.net/npm/daisyui@2.42.1/dist/full.css" rel="stylesheet" type="text/css" />
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2/dist/tailwind.min.css" rel="stylesheet" type="text/css" />
 
-  <title>Observaciones| Lista</title>
+  <title>Añadir una observación</title>
 </head>
 
-<body class="bg-teal-50">
+<body>
+
   <div class="drawer">
     <input id="my-drawer" type="checkbox" class="drawer-toggle" />
     <div class="drawer-content">
@@ -31,10 +35,9 @@
         </div>
         <div class="flex-none">
           <div class="tooltip tooltip-left" data-tip="cerrar sesión">
-            <button class="btn btn-square btn-ghost">
+            <button class="btn btn-square btn-ghost" id="btnLogout">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                stroke="currentColor" class="inline-block w-5 h-5 stroke-current">
-                >
+                stroke="currentColor" class="inline-block w-5 h-5 stroke-current">>
                 <path stroke-linecap="round" stroke-linejoin="round"
                   d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
               </svg>
@@ -43,59 +46,50 @@
         </div>
       </div>
       <main>
-        <div class="grid mb-5 ml-3 mr-3">
-          <div class="grid justify-items-center" id="rootEvidences">
+        <div class="container px-3 mx-auto grid md-auto h-auto">
+          <!-- Contenedor | Coloca tu contenido aquí -->
 
 
-            <div class="mb-6 mt-5 flex justify-center items-center w-full">
-              <svg style="width: 32px; height: 32px; color: #f29c1f" viewBox="0 0 24 24" class="mr-4 drop-shadow-sm">
-                <path fill="currentColor"
-                  d="M21.04 13.13C21.18 13.13 21.31 13.19 21.42 13.3L22.7 14.58C22.92 14.79 22.92 15.14 22.7 15.35L21.7 16.35L19.65 14.3L20.65 13.3C20.76 13.19 20.9 13.13 21.04 13.13M19.07 14.88L21.12 16.93L15.06 23H13V20.94L19.07 14.88M3 7V5H5V4C5 2.89 5.9 2 7 2H13V9L15.5 7.5L18 9V2H19C20.05 2 21 2.95 21 4V10L11 20V22H7C5.95 22 5 21.05 5 20V19H3V17H5V13H3V11H5V7H3M5 7H7V5H5V7M5 11V13H7V11H5M5 17V19H7V17H5Z" />
-              </svg>
-              <h1 class="font-bold text-2xl drop-shadow-sm" style="color: #f29c1f">
-                Mis Observaciones
-              </h1>
-            </div>
+          <div class="grid grid-cols-1 md:grid-cols-1 h-screen place-items-center p-5">
+            <div class="pt-3">
+              <h3 class="text-lg font-bold">Nueva observación</h3>
+              <p class="py-4">Titulo para el problema</p>
+              <input type="text" id="title" placeholder="Titulo" class="input input-bordered w-full" />
+              <p class="py-4">
+                Por favor ingresa una descripción detallada del desperfecto:
+              </p>
+              <textarea id="comment" class="textarea textarea-accent w-full" placeholder="Desperfecto..."></textarea>
+              <div class="grid md:grid-cols-2 sm:grid-cols-1 justify-center">
+                <div class="btn-group btn-group-horizontal mt-2 w-auto mx-2">
+                  <button class="btn bg-[#25AC5B] border-none" id="open" style="background-color: #25ac5b; color: white">Abrir Cámara</button>
+                  <button class="btn bg-[#25AC5B] border-none" id="take" style="background-color: #25ac5b; color: white">Tomar Foto</button>
+                </div>
 
-            <div class="card shadow-xl bg-white w-full py-10 w-11/12">
-              <div class="grid md:flex md:justify-center ml-5 mr-5">
-                <input type="text" placeholder="Título de la observación..."
-                  class="input input-bordered text-black w-full" id="searchValue" />
-                <button class="btn bg-[#25AC5B] hover:bg-[#25AC5B] border-none w-auto mx-2 mt-4 md:mt-0" id="searchBtn"
-                  style="background-color: #25ac5b; color: white">
-                  <svg class="stroke-1 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <button class="btn bg-[#25AC5B] border-none mt-2 w-auto mx-2" id="saveObservation" style="background-color: #25ac5b; color: white">
+                  <svg class="stroke-1 h-6 w-6 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                    stroke-width="1.5" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round"
-                      d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                      d="M11.35 3.836c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m8.9-4.414c.376.023.75.05 1.124.08 1.131.094 1.976 1.057 1.976 2.192V16.5A2.25 2.25 0 0118 18.75h-2.25m-7.5-10.5H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V18.75m-7.5-10.5h6.375c.621 0 1.125.504 1.125 1.125v9.375m-8.25-3l1.5 1.5 3-3.75" />
                   </svg>
-                  Buscar
+                  Guardar
                 </button>
-
-                <a id="addNew" for="my-modal-3"
-                  class="btn modal-button bg-[#25AC5B] border-none w-auto mx-2 mt-4 md:mt-0"
-                  style="background-color: #25ac5b; color: white">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                    stroke="currentColor" class="w-6 h-6 mr-2">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                      d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  Nueva
-                </a>
-
-                <a class="btn bg-[#EA7063] hover:bg-[#EA7063] border-none mx-2 md:mr-5 mt-2 md:mt-0"
-                  style="background-color:#EB7063; color: white" href="./pending-visits.html">
-                  <svg class="stroke-1 h-5 w-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3" />
-                  </svg>
-                  Regresar
-                </a>
               </div>
             </div>
+
+            <div class="pt-3">
+              <div class="flex justify-center">
+                <video id="video" autoplay class="rounded-box" style="height: 350px;width: 90%;"></video>
+              </div>
+              <div class="flex justify-center mb-5">
+                <div id="photo" class="carousel carousel-center max-w-md p-4 space-x-4 bg-neutral rounded-box bg-white">
+                </div>
+              </div>
+            </div>
+
           </div>
+
+          <br>
         </div>
-
-
       </main>
     </div>
     <div class="drawer-side">
@@ -140,8 +134,9 @@
     </div>
   </div>
 
-  <script src="./js/modules/ObservationModule.js" type="module"></script>
 
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <script src="./js/modules/AddObservationModule.js" type="module"></script>
 </body>
 
 </html>

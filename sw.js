@@ -26,7 +26,8 @@ self.addEventListener('install', (event) => {
             return cache.addAll([
                 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap',
                 'https://fonts.googleapis.com/icon?family=Material+Icons',
-                'https://cdn.jsdelivr.net/npm/daisyui@2.31.0/dist/full.css',
+                'https://cdn.jsdelivr.net/npm/daisyui@2.42.1/dist/full.css',
+                'https://cdn.jsdelivr.net/npm/tailwindcss@2.2/dist/tailwind.min.css',
                 'https://fonts.gstatic.com/s/materialicons/v139/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2',
                 'https://fonts.gstatic.com/s/materialicons/v139/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2',
             ])
@@ -39,6 +40,7 @@ self.addEventListener('install', (event) => {
                 '/index.html',
                 '/dashboard.html',
                 '/observations.html',
+                'add-observation.html',
                 '/order.html',
                 '/products.html',
                 '/current-products.html',
@@ -53,7 +55,13 @@ self.addEventListener('install', (event) => {
                 '/js/modules/LoginModule.js',
                 '/js/modules/LogoutModule.js',
                 '/js/modules/ProductModule.js',
+                '/js/modules/OrderModule.js',
+                '/js/modules/ProductsInOrderModule.js',
+                '/js/modules/ObservationModule.js',
+                '/js/modules/AddObservationModule.js',
 
+                '/js/services/ObservationService.js',
+                '/js/services/OrderService.js',
                 '/js/services/ProductService.js',
                 '/js/services/LoginService.js',
                 '/js/services/VisitService.js',
@@ -88,9 +96,9 @@ self.addEventListener('install', (event) => {
 })
 
 
-//self.addEventListener('fetch', (event) => {
-//    
-//})
+self.addEventListener('fetch', (event) => {
+    //event.respondWith(caches.match(event.request))
+})
 
 //Only cache
 //self.addEventListener('fetch', (event) => {
@@ -98,7 +106,7 @@ self.addEventListener('install', (event) => {
 //})
 
 //Cache with network fallback
-self.addEventListener('fetch', (event) => {
+/*self.addEventListener('fetch', (event) => {
     let call = null
     //Cache with network Fallbacks
 
@@ -122,4 +130,4 @@ self.addEventListener('fetch', (event) => {
 
     event.respondWith(call);
 
-})
+})*/

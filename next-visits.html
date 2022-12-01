@@ -7,8 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/daisyui@2.31.0/dist/full.css" rel="stylesheet" type="text/css" />
-  <link href="./dist/output.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@2.42.1/dist/full.css" rel="stylesheet" type="text/css" />
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2/dist/tailwind.min.css" rel="stylesheet" type="text/css" />
   <title>Visitas | Próximas</title>
 </head>
 
@@ -104,6 +104,9 @@
               </li>
             </ul>
 
+            <div class="grid justify-items-center" id="noContent">
+            </div>
+
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2" id="next-visits-generator">
 
               <div class="card bg-base-100 shadow-xl mt-3 w-auto sm:flex-1 mx-3 sm:ml-0">
@@ -122,7 +125,7 @@
                   </div>
                 </div>
               </div>
-              
+
               <div class="card bg-base-100 shadow-xl mt-3 w-auto sm:flex-1 mx-3 sm:ml-0">
                 <div class="animate-pulse flex card-body">
                   <div class=" btn btn-disabled bg-slate-400 rounded"></div>
@@ -223,6 +226,35 @@
     </div>
   </div>
   <script src="./js/modules/NextVisitModule.js" type="module"></script>
+  <script>
+    function addOrder(item) {
+      if (item) {
+        localStorage.setItem("currentOrder", JSON.stringify(item));
+        location.href = '../../order.html'
+      }
+    }
+
+    function complete(id, checkId) {
+      let token = localStorage.token
+      fetch(`http://192.168.100.6:8000/api/visit/updateStatus/${id}`,
+        {
+          method: 'PUT',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify({ status: "Realizado" })
+        })
+        .then((response) => response.json())
+        .then((response) => {
+          window.location.replace("./completed-visits.html")
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    }
+  </script>
   <script src="./js/modules/LogoutModule.js" type="module"></script>
 </body>
 

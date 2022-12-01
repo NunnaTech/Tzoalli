@@ -1,1 +1,1 @@
-export const getApiUrl = (path) => `http://127.0.0.1:8000/api/${path}`;
+export const getApiUrl = (path) => `http://192.168.100.6:8000/api/${path}`;
