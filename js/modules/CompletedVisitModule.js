@@ -22,6 +22,7 @@ const loadContent = () => {
         `
       } else {
         response.data.data.map((item, i) => {
+          console.log(item)
           generator.innerHTML += `
           <div class="card bg-base-100 shadow-xl mt-6 w-auto sm:flex-1 mx-3 sm:ml-0">
             <div class="card-body">

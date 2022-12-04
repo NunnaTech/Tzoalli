@@ -1,3 +1,6 @@
+importScripts("https://cdn.jsdelivr.net/npm/pouchdb@7.3.1/dist/pouchdb.min.js")
+importScripts("./js/utils/sw-db.js")
+
 const STATIC_CACHE = 'static-v1.0'
 const DYNAMYC_CACHE = 'dynamic-v1.0'
 const INMUTABLE_CACHE = 'inmutable-v1.0'
@@ -5,7 +8,7 @@ const INMUTABLE_CACHE = 'inmutable-v1.0'
 const clearCache = (cacheName, maxItemSize) => {
     caches.open(cacheName).then((cache) => {
 
-        cache.keys().then((items) => {
+        return cache.keys().then((items) => {
 
             if (items.length >= maxItemSize) {
 
@@ -30,6 +33,7 @@ self.addEventListener('install', (event) => {
                 'https://cdn.jsdelivr.net/npm/tailwindcss@2.2/dist/tailwind.min.css',
                 'https://fonts.gstatic.com/s/materialicons/v139/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2',
                 'https://fonts.gstatic.com/s/materialicons/v139/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2',
+                'https://cdn.jsdelivr.net/npm/pouchdb@7.3.1/dist/pouchdb.min.js'
             ])
         });
 
@@ -67,6 +71,7 @@ self.addEventListener('install', (event) => {
                 '/js/services/VisitService.js',
 
                 '/js/utils/api.js',
+                '/js/utils/sw-db.js',
                 '/js/utils/notiflix-3.2.5.min.css',
                 '/js/utils/notiflix-3.2.5.min.js',
 
@@ -95,39 +100,64 @@ self.addEventListener('install', (event) => {
     event.waitUntil(Promise.all([inmutablePromise, staticPromise]))
 })
 
+self.addEventListener('activate', (event) => {
+    const promDeleteCaches = caches.keys().then((items) => {
+        items.forEach((key) => {
+            if (key !== STATIC_CACHE && key.includes('static')) {
+                return caches.delete(key);
+            }
+        });
+    });
+    event.waitUntil(promDeleteCaches);
+});
+
 
 self.addEventListener('fetch', (event) => {
-    //event.respondWith(caches.match(event.request))
+    if (event.request.clone().method === 'POST' || event.request.clone().method === 'PUT') {
+        let genericResponse = fetch(event.request.clone())
+            .then((response) => {
+                return response
+            })
+            .catch((err) => {
+                return savePostOffline(event.request.bodyUsed, event.request.url, event.request.method)
+            })
+        console.log(genericResponse)
+        event.respondWith(genericResponse)
+    } else {
+        event.respondWith(
+            fetch(event.request)
+                .then((networkResponse) => {
+                    return caches.open(DYNAMYC_CACHE).then((cache) => {
+                        cache.put(event.request, networkResponse.clone());
+                        cleanCache(DYNAMYC_CACHE, 50);
+                        return networkResponse;
+                    })
+                })
+                .catch(() => {
+                    return caches.match(event.request);
+                })
+        )
+    }
 })
 
-//Only cache
-//self.addEventListener('fetch', (event) => {
-//    event.respondWith(caches.match(event.request))
-//})
-
-//Cache with network fallback
-/*self.addEventListener('fetch', (event) => {
-    let call = null
-    //Cache with network Fallbacks
-
-    call = caches.match(event.request).then((cacheResponse) => {
-        //Si existe el recurso en cache, retorna el recurso
-        if (cacheResponse) {
-            return cacheResponse
-        }
-
-        //Si no, va a internet  
-        return fetch(event.request).then((response) => {
-            caches.open(DYNAMYC_CACHE).then((cache) => {
-                cache.put(event.request, response)
-                clearCache(DYNAMYC_CACHE, 50)
+self.addEventListener('sync', (event) => {
+    let token = localStorage.getItem("token")
+    if (event.tag === "online") {
+        getAllPostOffline().then((document) => {
+            document.rows.map((item, i) => {
+                fetch(item.url, {
+                    method: item.method,
+                    headers: {
+                        'Content-type': 'application/json',
+                        'Accept': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                })
             })
-            return response.clone()
         })
-    }).catch((err) => {
-        console.log("[ERROR]: ", err)
-    })
+    }
 
-    event.respondWith(call);
 
-})*/
+})
+
+
