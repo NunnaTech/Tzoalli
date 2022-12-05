@@ -27,9 +27,7 @@ const generateFakeCards = () => {
 }
 
 const loadContent = () => {
-
     let token = localStorage.getItem("token")
-
     productService.GetAllProducts(token)
         .then((response) => response.json())
         .then((response) => {

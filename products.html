@@ -141,12 +141,8 @@
     <script src="./js/modules/LogoutModule.js" type="module"></script>
     <script>
         function addProductToOrder(id, item) {
-
-            console.log("NAME BTN ", id, " -> ", item);
-
             document.getElementById(`my-modal-${id}`).checked = false;
             let cantidad_product = parseInt(document.getElementById(`quantity_${id}`).value)
-            console.log("PRINT ", item.product_name, " -> ", cantidad_product);
             if (cantidad_product && cantidad_product > 0) {
                 let products = JSON.parse(localStorage.getItem('orderProducts'))
                 if (products != null) {
@@ -170,12 +166,10 @@
                         product_description: item.product_description
                     }]
                 }
-                console.warn("PRODUCTS IN STORAGE AFTER SET NEWS ", products);
                 localStorage.setItem("orderProducts", JSON.stringify(products));
             }
         }
     </script>
-
 </body>
 
 </html>
