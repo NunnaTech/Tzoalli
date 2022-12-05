@@ -72,6 +72,7 @@ self.addEventListener('install', (event) => {
 
                 '/js/utils/api.js',
                 '/js/utils/sw-db.js',
+                '/js/utils/offline.js',
                 '/js/utils/notiflix-3.2.5.min.css',
                 '/js/utils/notiflix-3.2.5.min.js',
 
@@ -119,19 +120,26 @@ self.addEventListener('fetch', (event) => {
                 return response
             })
             .catch((err) => {
-                return savePostOffline(event.request.bodyUsed, event.request.url, event.request.method)
+                console.log("[SIN CONEXIÓN] ", err)
+                return event.request.clone().json().then((json) => {
+                    return savePostOffline(
+                        json,
+                        event.request.url,
+                        event.request.method,
+                        event.request.headers.get("Authorization")
+                    )
+                })
             })
-        console.log(genericResponse)
+
         event.respondWith(genericResponse)
     } else {
         event.respondWith(
             fetch(event.request)
                 .then((networkResponse) => {
-                    return caches.open(DYNAMYC_CACHE).then((cache) => {
-                        cache.put(event.request, networkResponse.clone());
-                        cleanCache(DYNAMYC_CACHE, 50);
-                        return networkResponse;
+                    caches.open(DYNAMYC_CACHE).then((cache) => {
+                        cache.put(event.request, networkResponse);
                     })
+                    return networkResponse.clone()
                 })
                 .catch(() => {
                     return caches.match(event.request);
@@ -141,20 +149,30 @@ self.addEventListener('fetch', (event) => {
 })
 
 self.addEventListener('sync', (event) => {
-    let token = localStorage.getItem("token")
-    if (event.tag === "online") {
-        getAllPostOffline().then((document) => {
-            document.rows.map((item, i) => {
-                fetch(item.url, {
-                    method: item.method,
-                    headers: {
-                        'Content-type': 'application/json',
-                        'Accept': 'application/json',
-                        'Authorization': `Bearer ${token}`
-                    },
+
+    if (event.tag == "online") {
+        event.waitUntil(
+            getAllPostOffline().then((document) => {
+                document.rows.map((item, i) => {
+                    fetch(item.doc.url, {
+                        method: item.doc.method,
+                        headers: {
+                            'Content-type': 'application/json',
+                            'Accept': 'application/json',
+                            'Authorization': item.doc.token
+                        },
+                        body: JSON.stringify(item.doc.body)
+                    })
+                        .then((response) => {
+                            db.remove(item.doc._id, item.doc._rev);
+                        })
+                        .catch((err) => {
+                            console.log(err)
+                        })
                 })
+
             })
-        })
+        )
     }
 
 

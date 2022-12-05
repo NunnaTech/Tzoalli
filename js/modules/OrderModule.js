@@ -1,5 +1,7 @@
-console.warn("OBJECT RECUPERADO ", JSON.parse(localStorage.getItem("currentOrder")));
 import { OrderService } from "../services/OrderService.js";
+import { offlineMode } from "../utils/offline.js"
+
+offlineMode()
 const orderService = new OrderService();
 
 let btnConfirm = document.getElementById("btnConfirmOrder")
@@ -40,15 +42,16 @@ btnConfirm.addEventListener('click', function () {
             .then((response) => response.json())
             .then((response) => {
                 if (response.status_code == 201) {
+                    Notiflix.Notify.success('Orden creada correctamente');
                     location.href = "../../pending-visits.html"
                 } else {
-                    alert("Petición no completada")
+                    Notiflix.Notify.failure('No se logró crear la orden');
                 }
             }).catch((err) => {
                 console.log("[ERROR]: " + err)
             })
     } else {
-        alert("No se ingresó aún el nombre de quien recibe")
+        Notiflix.Notify.warning('No se ingresó aún el nombre de quien recibe');
     }
 })
 

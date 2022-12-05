@@ -108,8 +108,6 @@ searchBtn.addEventListener('click', () => {
         .then((response) => response.json())
         .then((response) => {
 
-            console.log(response)
-
             generator.innerHTML = ""
             response.data.map((item, i) => {
                 generator.innerHTML += `

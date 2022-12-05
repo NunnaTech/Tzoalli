@@ -1,4 +1,7 @@
 import { VisitService } from "../services/VisitService.js"
+import { offlineMode } from "../utils/offline.js"
+
+offlineMode()
 
 let params = window.location;
 const visitService = new VisitService();

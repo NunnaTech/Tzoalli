@@ -1,7 +1,7 @@
 const db = new PouchDB("offlinePost");
 
-function savePostOffline(body, url, method) {
-    return db.post({ body: body, url: url, method: method }).then((pouchResponse) => {
+function savePostOffline(body, url, method, session) {
+    return db.post({ body: body, url: url, method: method, token: session }).then((pouchResponse) => {
         return new Response(JSON.stringify(pouchResponse));
     })
 }

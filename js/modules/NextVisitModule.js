@@ -1,5 +1,7 @@
 import { VisitService } from "../services/VisitService.js"
+import { offlineMode } from "../utils/offline.js"
 
+offlineMode()
 const visitService = new VisitService();
 
 
