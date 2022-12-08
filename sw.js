@@ -51,7 +51,7 @@ self.addEventListener('install', (event) => {
                 '/completed-visits.html',
                 '/next-visits.html',
                 '/pending-visits.html',
-                '/template.html',
+                '/template405.html',
 
                 '/js/modules/CompletedVisitModule.js',
                 '/js/modules/NextVisitModule.js',
@@ -72,7 +72,6 @@ self.addEventListener('install', (event) => {
 
                 '/js/utils/api.js',
                 '/js/utils/sw-db.js',
-                '/js/utils/offline.js',
                 '/js/utils/notiflix-3.2.5.min.css',
                 '/js/utils/notiflix-3.2.5.min.js',
 
@@ -114,21 +113,23 @@ self.addEventListener('activate', (event) => {
 
 
 self.addEventListener('fetch', (event) => {
+
     if (event.request.clone().method === 'POST' || event.request.clone().method === 'PUT') {
         let genericResponse = fetch(event.request.clone())
             .then((response) => {
                 return response
             })
             .catch((err) => {
-                console.log("[SIN CONEXIÓN] ", err)
-                return event.request.clone().json().then((json) => {
-                    return savePostOffline(
-                        json,
-                        event.request.url,
-                        event.request.method,
-                        event.request.headers.get("Authorization")
-                    )
-                })
+                if (self.registration.sync.register('online')) {
+                    return event.request.clone().json().then((json) => {
+                        return savePostOffline(
+                            json,
+                            event.request.url,
+                            event.request.method,
+                            event.request.headers.get("Authorization")
+                        )
+                    })
+                }
             })
 
         event.respondWith(genericResponse)

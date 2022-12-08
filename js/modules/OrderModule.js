@@ -1,7 +1,5 @@
 import { OrderService } from "../services/OrderService.js";
-import { offlineMode } from "../utils/offline.js"
 
-offlineMode()
 const orderService = new OrderService();
 
 let btnConfirm = document.getElementById("btnConfirmOrder")
@@ -41,7 +39,7 @@ btnConfirm.addEventListener('click', function () {
         })
             .then((response) => response.json())
             .then((response) => {
-                if (response.status_code == 201) {
+                if (response.ok) {
                     Notiflix.Notify.success('Orden creada correctamente');
                     location.href = "../../pending-visits.html"
                 } else {
@@ -59,7 +57,6 @@ const loadContent = () => {
     let total_amount = 0;
     let order = JSON.parse(localStorage.getItem('currentOrder'))
     let products = JSON.parse(localStorage.getItem('orderProducts'))
-    console.log(JSON.parse(localStorage.getItem('currentOrder')))
     let title = document.getElementById("title")
     title.innerText = `Pedido para la tienda ${order.grocer.grocer_name}`
     let totalAmount = document.getElementById("total_order_amount")

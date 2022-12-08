@@ -34,7 +34,6 @@ const loadContent = () => {
             let generator = document.getElementById('list-products')
             generator.innerHTML = ""
             response.data.data.map((item, i) => {
-                console.log("INDEX ", i);
                 generator.innerHTML += `
                 <div class="card w-auto bg-white shadow-xl p-4 m-5 mx-15 h-min">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -47,7 +46,7 @@ const loadContent = () => {
                         </h5>
                     </a>
                     <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">${item.description} cada pieza</p>
-                    <label for="my-modal-${i}" class="btn bg-[#F29C1F] border-none modal-button">
+                    <label for="my-modal-${i}" class="btn border-none modal-button" style="background-color: #ffbc24; color: white>
                         <svg class="stroke-1 h-6 w-6 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round"
@@ -62,16 +61,16 @@ const loadContent = () => {
                     <div class="modal-box relative">
                         <label for="my-modal-${i}"
                             class="btn bg-[#575F69] border-none btn-sm btn-circle absolute right-2 top-2">✕</label>
-                        <figure class="px-10 pt-10">
-                            <img src="${item.product_image}" alt="Shoes" class="rounded-xl" />
+                        <figure class="px-10 pt-10 flex justify-center">
+                            <img src="${item.product_image}" alt="Shoes" class="rounded-xl" width="150px" height="150px"/>
                         </figure>
                         <div class="card-body items-center text-center">
                             <h2 class="text-lg">${item.product_name}</h2>
-                            <p class="font-bold">${item.product_price} cada pieza</p>
+                            <p class="font-bold">$${item.product_price} cada pieza</p>
                             <div class="card-actions justify-center">
                                 <input type="number" placeholder="Cantidad" id="quantity_${i}"
-                                    class="input input-bordered w-full text-black lg:w-96" min="1" />
-                                <button class="btn bg-[#25AC5B] border-none w-full mt-2" id="addProductToOrderBtn" 
+                                    class="input input-bordered w-full text-black text-center lg:w-96" min="1" value="1"/>
+                                <button class="btn border-none w-full mt-2" id="addProductToOrderBtn"  style="background-color: #25ac5b; color: white"
                                     onclick='addProductToOrder(${i}, ${JSON.stringify(item)});'>
                                     <svg class="stroke-1 h-6 w-6 mr-2" xmlns="http://www.w3.org/2000/svg"
                                         fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -120,7 +119,7 @@ searchBtn.addEventListener('click', () => {
                     </h5>
                 </a>
                 <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">${item.description} cada pieza</p>
-                <label for="my-modal" class="btn border-none modal-button" style="background-color: #ecc013; color: white">
+                <label for="my-modal" class="btn border-none modal-button" style="background-color: #25ac5b; color: white">
                     <svg class="stroke-1 h-6 w-6 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none"
                         viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round"
@@ -144,7 +143,7 @@ searchBtn.addEventListener('click', () => {
                                     <div class="card-actions justify-center">
                                         <input type="number" placeholder="Cantidad"
                                             class="input input-bordered w-full text-black lg:w-96" min="1" value="1"/>
-                                        <button class="btn bg-[#25AC5B] border-none w-full mt-2" id="btnAddProduct${i}">
+                                        <button class="btn bg-success border-none w-full mt-2" id="btnAddProduct${i}">
                                             <svg class="stroke-1 h-6 w-6 mr-2" xmlns="http://www.w3.org/2000/svg"
                                                 fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                                 stroke="currentColor">
@@ -173,12 +172,5 @@ searchInput.addEventListener('input', (e) => {
         loadContent()
     }
 })
-
-/*const clearBtn = document.getElementById('clearBtn')
-clearBtn.addEventListener('click', () => {
-    searchInput.value = ""
-    generateFakeCards()
-    loadContent();
-})*/
 
 loadContent();

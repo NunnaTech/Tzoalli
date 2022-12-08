@@ -1,7 +1,4 @@
 import { ObservationService } from "../services/ObservationService.js";
-import { offlineMode } from "../utils/offline.js"
-
-offlineMode()
 
 let params = window.location;
 const observationService = new ObservationService();

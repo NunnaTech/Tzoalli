@@ -1,7 +1,4 @@
 import { VisitService } from "../services/VisitService.js"
-import { offlineMode } from "../utils/offline.js"
-
-offlineMode()
 
 let params = window.location;
 const visitService = new VisitService();
@@ -25,7 +22,6 @@ const loadContent = () => {
         `
       } else {
         response.data.data.map((item, i) => {
-          console.log(item)
 
           if (item.order === null || item.order === undefined) {
             generator.innerHTML +=
