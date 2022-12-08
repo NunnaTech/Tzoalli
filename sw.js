@@ -70,6 +70,7 @@ self.addEventListener('install', (event) => {
                 '/js/services/LoginService.js',
                 '/js/services/VisitService.js',
 
+                '/js/utils/network.js',
                 '/js/utils/api.js',
                 '/js/utils/sw-db.js',
                 '/js/utils/notiflix-3.2.5.min.css',
