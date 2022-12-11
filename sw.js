@@ -115,12 +115,19 @@ self.addEventListener('activate', (event) => {
 
 self.addEventListener('fetch', (event) => {
 
+    //Metodo global para controlar posts o puts, los get van al else.
     if (event.request.clone().method === 'POST' || event.request.clone().method === 'PUT') {
+
+        //Respuesta generica en caso de que:
+        //1 (then): Hay conexión a internet
+        //2: (catch): No hay conexion para retornar un response personalizado que se guardaró en pouchDB
         let genericResponse = fetch(event.request.clone())
             .then((response) => {
                 return response
             })
             .catch((err) => {
+
+                //registramos un evento de sincronización cuando recupere internet (como un listener)
                 if (self.registration.sync.register('online')) {
                     return event.request.clone().json().then((json) => {
                         return savePostOffline(
@@ -138,13 +145,26 @@ self.addEventListener('fetch', (event) => {
         event.respondWith(
             fetch(event.request)
                 .then((networkResponse) => {
+
+                    //Almacenamos la nueva peticion que no estaba en cache
                     caches.open(DYNAMYC_CACHE).then((cache) => {
                         cache.put(event.request, networkResponse);
+                        clearCache(DYNAMYC_CACHE, 90)
                     })
+
                     return networkResponse.clone()
                 })
-                .catch(() => {
-                    return caches.match(event.request);
+                .catch((err) => {
+                    return caches.match(event.request).then((cacheSource) => {
+
+                        //Si el recurso no es undefined esta en cache
+                        //Caso contrario, es algo que no estaba en cache (ruta dinamica o recurso al que no se accedio)
+                        if (cacheSource != undefined) {
+                            return cacheSource
+                        } else {
+                            return caches.match('/template405.html')
+                        }
+                    })
                 })
         )
     }
@@ -152,8 +172,11 @@ self.addEventListener('fetch', (event) => {
 
 self.addEventListener('sync', (event) => {
 
+    //Cuando se recupere conexion, se ejecuta el evento
     if (event.tag == "online") {
         event.waitUntil(
+
+            //Obtenemos todos los documentos de pouchDB y lo mandamos a internet
             getAllPostOffline().then((document) => {
                 document.rows.map((item, i) => {
                     fetch(item.doc.url, {
@@ -166,6 +189,8 @@ self.addEventListener('sync', (event) => {
                         body: JSON.stringify(item.doc.body)
                     })
                         .then((response) => {
+
+                            //En caso de que se hizo el post correctamente, borramos el documento de pouchDB
                             db.remove(item.doc._id, item.doc._rev);
                         })
                         .catch((err) => {

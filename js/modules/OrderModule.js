@@ -23,31 +23,36 @@ btnConfirm.addEventListener('click', function () {
         let products = JSON.parse(localStorage.getItem("orderProducts"));
         let { id } = JSON.parse(localStorage.getItem("currentOrder"))
         let list_products = [];
-        products.forEach(element => {
-            list_products.push({
-                product_id: element.product_id,
-                quantity: element.quantity,
-                total_amount: element.total_amount
+        if (products === null) {
+            Notiflix.Notify.warning('Debe agregar al menos 1 producto en la orden');
+        } else {
+            products.forEach(element => {
+                list_products.push({
+                    product_id: element.product_id,
+                    quantity: element.quantity,
+                    total_amount: element.total_amount
+                })
             })
-        })
-        let token = localStorage.getItem("token")
-        orderService.StoreOrder(token, {
-            received_by: document.getElementById("received_by").value,
-            total_order_amount: 0,
-            visit_id: id,
-            products: list_products
-        })
-            .then((response) => response.json())
-            .then((response) => {
-                if (response.ok) {
-                    Notiflix.Notify.success('Orden creada correctamente');
-                    location.href = "../../pending-visits.html"
-                } else {
-                    Notiflix.Notify.failure('No se logró crear la orden');
-                }
-            }).catch((err) => {
-                console.log("[ERROR]: " + err)
+            let token = localStorage.getItem("token")
+            orderService.StoreOrder(token, {
+                received_by: document.getElementById("received_by").value,
+                total_order_amount: 0,
+                visit_id: id,
+                products: list_products
             })
+                .then((response) => response.json())
+                .then((response) => {
+                    console.log(response)
+                    if (response.ok || response.status_code === 201) {
+                        Notiflix.Notify.success('Orden creada correctamente');
+                        location.href = "../../pending-visits.html"
+                    } else {
+                        Notiflix.Notify.failure('No se logró crear la orden');
+                    }
+                }).catch((err) => {
+                    console.log("[ERROR]: " + err)
+                })
+        }
     } else {
         Notiflix.Notify.warning('No se ingresó aún el nombre de quien recibe');
     }

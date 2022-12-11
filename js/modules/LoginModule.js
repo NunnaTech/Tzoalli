@@ -1,6 +1,7 @@
 import { LoginService } from "../services/LoginService.js";
 // Login Button Actions
 let btnLogin = document.getElementById("btnLogin")
+btnLogin.classList.remove("loading")
 // Login Service
 const loginService = new LoginService()
 
@@ -13,6 +14,7 @@ btnLogin.addEventListener('click', () => {
         Notiflix.Notify.warning('Ingresa usuario y contraseña');
     } else {
         btnLogin.disabled = true;
+        btnLogin.classList.add("loading")
         login(email, password)
     }
 })
