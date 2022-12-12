@@ -25,24 +25,24 @@ btnCamera.addEventListener('click', () => {
     btnCamera.classList.add("btn-disabled")
 })
 
-// window.addEventListener('online', (event) => {
-//     btnCamera.disabled = false;
-//     btnTake.disabled = false;
-//     btnSave.disabled = false;
-//     btnCamera.classList.remove('btn-disabled')
-//     btnTake.classList.remove('btn-disabled')
-//     btnSave.classList.remove('btn-disabled')
-// })
+window.addEventListener('online', (event) => {
+    btnCamera.disabled = false;
+    btnTake.disabled = false;
+    btnSave.disabled = false;
+    btnCamera.classList.remove('btn-disabled')
+    btnTake.classList.remove('btn-disabled')
+    btnSave.classList.remove('btn-disabled')
+})
 
-// window.addEventListener('offline', () => {
-//     btnCamera.disabled = true;
-//     btnTake.disabled = true;
-//     btnSave.disabled = true;
-//     btnCamera.classList.add('btn-disabled')
-//     btnTake.classList.add('btn-disabled')
-//     btnSave.classList.add('btn-disabled')
-//     Notiflix.Notify.info("Solo dispobible con conexión a red")
-// })
+window.addEventListener('offline', () => {
+    btnCamera.disabled = true;
+    btnTake.disabled = true;
+    btnSave.disabled = true;
+    btnCamera.classList.add('btn-disabled')
+    btnTake.classList.add('btn-disabled')
+    btnSave.classList.add('btn-disabled')
+    Notiflix.Notify.info("Solo dispobible con conexión a red")
+})
 
 btnTake.addEventListener('click', () => {
 

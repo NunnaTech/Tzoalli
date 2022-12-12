@@ -156,13 +156,18 @@ self.addEventListener('fetch', (event) => {
                 })
                 .catch((err) => {
                     return caches.match(event.request).then((cacheSource) => {
-
+                        console.log("request source", event.request)
+                        console.log("response cached", cacheSource)
                         //Si el recurso no es undefined esta en cache
                         //Caso contrario, es algo que no estaba en cache (ruta dinamica o recurso al que no se accedio)
-                        if (cacheSource != undefined) {
-                            return cacheSource
-                        } else {
+                        if (cacheSource === undefined) {
                             return caches.match('/template405.html')
+                                .then((respCache) => {
+                                    console.log("respCache", respCache)
+                                    return respCache
+                                })
+                        } else {
+                            return cacheSource
                         }
                     })
                 })
