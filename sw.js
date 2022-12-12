@@ -71,6 +71,7 @@ self.addEventListener('install', (event) => {
                 '/js/services/VisitService.js',
 
                 '/js/utils/network.js',
+                '/js/utils/Camera.js',
                 '/js/utils/api.js',
                 '/js/utils/sw-db.js',
                 '/js/utils/notiflix-3.2.5.min.css',
@@ -147,11 +148,15 @@ self.addEventListener('fetch', (event) => {
                 .then((networkResponse) => {
 
                     //Almacenamos la nueva peticion que no estaba en cache
-                    caches.open(DYNAMYC_CACHE).then((cache) => {
-                        cache.put(event.request, networkResponse);
-                        clearCache(DYNAMYC_CACHE, 90)
+                    //Y verificamos que el recurso que se va a guardar no sea del cache estatico o inmutable
+                    caches.match(event.request).then((cacheSource) => {
+                        if (cacheSource === undefined) {
+                            caches.open(DYNAMYC_CACHE).then((cache) => {
+                                cache.put(event.request, networkResponse);
+                                clearCache(DYNAMYC_CACHE, 90)
+                            })
+                        }
                     })
-
                     return networkResponse.clone()
                 })
                 .catch((err) => {
