@@ -14,13 +14,6 @@ export class ObservationService {
 
     saveObservations(token, obj, urls) {
 
-        console.log(JSON.stringify({
-            title: obj.title,
-            comment: obj.comment,
-            visit: { id: obj.id },
-            urls: urls,
-        }))
-
         return fetch(getApiUrl(`observation`), {
             method: 'POST',
             headers: {

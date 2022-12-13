@@ -3,7 +3,6 @@ import { getApiUrl } from "../utils/api.js";
 export class OrderService {
 
     StoreOrder(token, order) {
-        console.warn("INFO ", order);
         return fetch(getApiUrl(`order`), {
             method: "POST",
             headers: {

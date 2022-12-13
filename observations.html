@@ -10,10 +10,14 @@
   <link href="https://cdn.jsdelivr.net/npm/daisyui@2.42.1/dist/full.css" rel="stylesheet" type="text/css" />
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2/dist/tailwind.min.css" rel="stylesheet" type="text/css" />
 
+  <!-- Notifications Notiflix -->
+  <link rel="stylesheet" href="./js/utils/notiflix-3.2.5.min.css" />
+  <script src="./js/utils/notiflix-3.2.5.min.js"></script>
+
   <title>Observaciones| Lista</title>
 </head>
 
-<body class="bg-teal-50">
+<body style="background-color:#fefefe;">
   <div class="drawer">
     <input id="my-drawer" type="checkbox" class="drawer-toggle" />
     <div class="drawer-content">
@@ -31,7 +35,7 @@
         </div>
         <div class="flex-none">
           <div class="tooltip tooltip-left" data-tip="cerrar sesión">
-            <button class="btn btn-square btn-ghost">
+            <button class="btn btn-square btn-ghost" id="btnLogout">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="inline-block w-5 h-5 stroke-current">
                 >
@@ -139,9 +143,9 @@
       </aside>
     </div>
   </div>
-
+  <script src="./js/utils/network.js"></script>
   <script src="./js/modules/ObservationModule.js" type="module"></script>
-
+  <script src="./js/modules/LogoutModule.js" type="module"></script>
 </body>
 
 </html>

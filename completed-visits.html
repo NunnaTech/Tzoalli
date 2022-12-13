@@ -7,14 +7,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  
+
   <link href="https://cdn.jsdelivr.net/npm/daisyui@2.42.1/dist/full.css" rel="stylesheet" type="text/css" />
-<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2/dist/tailwind.min.css" rel="stylesheet" type="text/css" />
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2/dist/tailwind.min.css" rel="stylesheet" type="text/css" />
+
+  <!-- Notifications Notiflix -->
+  <link rel="stylesheet" href="./js/utils/notiflix-3.2.5.min.css" />
+  <script src="./js/utils/notiflix-3.2.5.min.js"></script>
 
   <title>Visitas | Completadas</title>
 </head>
 
-<body class="bg-teal-50">
+<body style="background-color:#fefefe;">
   <div class="drawer">
     <input id="my-drawer" type="checkbox" class="drawer-toggle" />
     <div class="drawer-content">
@@ -222,8 +226,8 @@
       </aside>
     </div>
   </div>
+  <script src="./js/utils/network.js"></script>
   <script src="./js/modules/CompletedVisitModule.js" type="module"></script>
-
   <script src="./js/modules/LogoutModule.js" type="module"></script>
 
 </body>
