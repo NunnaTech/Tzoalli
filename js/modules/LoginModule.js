@@ -1,33 +1,40 @@
-import {LoginService} from "../services/LoginService.js";
+import { LoginService } from "../services/LoginService.js";
 // Login Button Actions
 let btnLogin = document.getElementById("btnLogin")
+btnLogin.classList.remove("loading")
 // Login Service
 const loginService = new LoginService()
 
+Notiflix.Notify.init({ position: 'center-top', })
 
-btnLogin.addEventListener('click',()=>{
+btnLogin.addEventListener('click', () => {
     let email = document.getElementById("emailInput").value
     let password = document.getElementById("passwordInput").value
-    btnLogin.disabled = true;
-    login(email,password)
+    if (email === "" || password === "") {
+        Notiflix.Notify.warning('Ingresa usuario y contraseña');
+    } else {
+        btnLogin.disabled = true;
+        btnLogin.classList.add("loading")
+        login(email, password)
+    }
 })
 
-const login = (email,password) => {
-    loginService.userLogin(email,password)
+const login = (email, password) => {
+    loginService.userLogin(email, password)
         .then((response) => response.json())
-        .then((data)=>{
-            if (data.status_code!==500){
-                setTimeout(()=>{
+        .then((data) => {
+            if (data.status_code !== 500) {
+                setTimeout(() => {
                     localStorage.token = data.access_token;
                     location.href = '../../completed-visits.html';
                     btnLogin.disabled = false;
-                },2000)
-            }else{
-                Notiflix.Notify.warning('Datos Incorrectos');
+                }, 2000)
+            } else {
+                Notiflix.Notify.warning('Credenciales Incorrectas');
                 btnLogin.disabled = false;
             }
         })
-        .catch((error)=>{
+        .catch((error) => {
             btnLogin.disabled = false;
             Notiflix.Notify.failure('Ocurrio un Error');
         })

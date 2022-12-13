@@ -46,7 +46,7 @@ const loadContent = () => {
                         <h5 class="mb-2 text-2xl font-semibold tracking-tight text-black">${item.product_name}</h5>
                     </a>
                     <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">${item.description}</p>
-                    <label for="my-modal-${i}" class="btn bg-[#F29C1F] border-none modal-button" style="background-color: #ecc013; color: white">
+                    <label for="my-modal-${i}" class="btn border-none modal-button" style="background-color: #ffbc24; color: white>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                             stroke-width="1.5" stroke="currentColor" class="stroke-1 h-6 w-6 mr-2">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -110,7 +110,7 @@ searchBtn.addEventListener('click', () => {
                         <h5 class="mb-2 text-2xl font-semibold tracking-tight text-black">${item.product_name}</h5>
                     </a>
                     <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">${item.description}</p>
-                    <label for="my-modal-${i}" class="btn bg-[#F29C1F] border-none modal-button"  style="background-color: #ecc013; color: white">
+                    <label for="my-modal-${i}" class="btn border-none modal-button" style="background-color: #ffbc24; color: white>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                             stroke-width="1.5" stroke="currentColor" class="stroke-1 h-6 w-6 mr-2">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -125,7 +125,7 @@ searchBtn.addEventListener('click', () => {
                 <div class="modal modal-bottom sm:modal-middle">
                     <div class="modal-box relative">
                         <label for="my-modal-${i}"
-                            class="btn bg-[#575F69] border-none btn-sm btn-circle absolute right-2 top-2">✕</label>
+                            class="btn bg-warning border-none btn-sm btn-circle absolute right-2 top-2">✕</label>
                         <figure class="px-10 pt-10 flex justify-center">
                             <img src="${item.product_image}" alt="Shoes" class="rounded-md" height="200" width="200" />
                         </figure>

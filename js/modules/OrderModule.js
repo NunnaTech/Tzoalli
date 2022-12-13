@@ -1,5 +1,5 @@
-console.warn("OBJECT RECUPERADO ", JSON.parse(localStorage.getItem("currentOrder")));
 import { OrderService } from "../services/OrderService.js";
+
 const orderService = new OrderService();
 
 let btnConfirm = document.getElementById("btnConfirmOrder")
@@ -23,32 +23,38 @@ btnConfirm.addEventListener('click', function () {
         let products = JSON.parse(localStorage.getItem("orderProducts"));
         let { id } = JSON.parse(localStorage.getItem("currentOrder"))
         let list_products = [];
-        products.forEach(element => {
-            list_products.push({
-                product_id: element.product_id,
-                quantity: element.quantity,
-                total_amount: element.total_amount
+        if (products === null) {
+            Notiflix.Notify.warning('Debe agregar al menos 1 producto en la orden');
+        } else {
+            products.forEach(element => {
+                list_products.push({
+                    product_id: element.product_id,
+                    quantity: element.quantity,
+                    total_amount: element.total_amount
+                })
             })
-        })
-        let token = localStorage.getItem("token")
-        orderService.StoreOrder(token, {
-            received_by: document.getElementById("received_by").value,
-            total_order_amount: 0,
-            visit_id: id,
-            products: list_products
-        })
-            .then((response) => response.json())
-            .then((response) => {
-                if (response.status_code == 201) {
-                    location.href = "../../pending-visits.html"
-                } else {
-                    alert("Petición no completada")
-                }
-            }).catch((err) => {
-                console.log("[ERROR]: " + err)
+            let token = localStorage.getItem("token")
+            orderService.StoreOrder(token, {
+                received_by: document.getElementById("received_by").value,
+                total_order_amount: 0,
+                visit_id: id,
+                products: list_products
             })
+                .then((response) => response.json())
+                .then((response) => {
+                    console.log(response)
+                    if (response.ok || response.status_code === 201) {
+                        Notiflix.Notify.success('Orden creada correctamente');
+                        location.href = "../../pending-visits.html"
+                    } else {
+                        Notiflix.Notify.failure('No se logró crear la orden');
+                    }
+                }).catch((err) => {
+                    console.log("[ERROR]: " + err)
+                })
+        }
     } else {
-        alert("No se ingresó aún el nombre de quien recibe")
+        Notiflix.Notify.warning('No se ingresó aún el nombre de quien recibe');
     }
 })
 
@@ -56,7 +62,6 @@ const loadContent = () => {
     let total_amount = 0;
     let order = JSON.parse(localStorage.getItem('currentOrder'))
     let products = JSON.parse(localStorage.getItem('orderProducts'))
-    console.log(JSON.parse(localStorage.getItem('currentOrder')))
     let title = document.getElementById("title")
     title.innerText = `Pedido para la tienda ${order.grocer.grocer_name}`
     let totalAmount = document.getElementById("total_order_amount")

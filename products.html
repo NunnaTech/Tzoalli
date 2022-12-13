@@ -10,10 +10,14 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@2.42.1/dist/full.css" rel="stylesheet" type="text/css" />
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2/dist/tailwind.min.css" rel="stylesheet" type="text/css" />
 
+    <!-- Notifications Notiflix -->
+    <link rel="stylesheet" href="./js/utils/notiflix-3.2.5.min.css" />
+    <script src="./js/utils/notiflix-3.2.5.min.js"></script>
+
     <title>Productos | Añadir productos</title>
 </head>
 
-<body class="bg-teal-50">
+<body style="background-color:#fefefe;">
     <div class="drawer">
         <input id="my-drawer" type="checkbox" class="drawer-toggle" />
         <div class="drawer-content">
@@ -132,17 +136,13 @@
             </aside>
         </div>
     </div>
-
+    <script src="./js/utils/network.js"></script>
     <script src="./js/modules/ProductsInOrderModule.js" type="module"></script>
     <script src="./js/modules/LogoutModule.js" type="module"></script>
     <script>
         function addProductToOrder(id, item) {
-
-            console.log("NAME BTN ", id, " -> ", item);
-
             document.getElementById(`my-modal-${id}`).checked = false;
             let cantidad_product = parseInt(document.getElementById(`quantity_${id}`).value)
-            console.log("PRINT ", item.product_name, " -> ", cantidad_product);
             if (cantidad_product && cantidad_product > 0) {
                 let products = JSON.parse(localStorage.getItem('orderProducts'))
                 if (products != null) {
@@ -166,12 +166,11 @@
                         product_description: item.product_description
                     }]
                 }
-                console.warn("PRODUCTS IN STORAGE AFTER SET NEWS ", products);
                 localStorage.setItem("orderProducts", JSON.stringify(products));
             }
+            Notiflix.Notify.success("Producto agregado a la orden")
         }
     </script>
-
 </body>
 
 </html>

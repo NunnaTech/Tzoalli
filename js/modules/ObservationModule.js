@@ -41,9 +41,6 @@ const getParams = () => {
         );
       });
     })
-    .catch((e) => {
-      console.log(e);
-    });
 };
 
 

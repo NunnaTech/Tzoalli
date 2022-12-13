@@ -5,7 +5,7 @@
     "description":"Progressive web application to manage candy shop orders",
     "display": "standalone",
     "orientation": "portrait",
-    "background_color": "#FFFFFF",
+    "background_color": "#e7f1f0",
     "theme_color": "#FFFFFF",
     "icons": [
         {
