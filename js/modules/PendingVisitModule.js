@@ -62,7 +62,7 @@ const loadContent = () => {
               </div>
               <div class="modal-action">
               <a for="my-modal-${i}" href="./observations.html?${item.id}"
-                class="btn bg-[#25AC5B] text-gray-100 border-none hover:bg-[#25AC5B]">Observaciones</a>
+              class="btn bg-[#25AC5B] text-gray-100 border-none hover:bg-[#25AC5B]" style="background-color: #25ac5b; color: white">Observaciones</a>
             </div>
             </div>
           </div>

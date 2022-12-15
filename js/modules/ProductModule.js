@@ -94,15 +94,12 @@ searchBtn.addEventListener('click', () => {
     productService.GetAllProductsByCoincidence(token, searchValue)
         .then((response) => response.json())
         .then((response) => {
-
-            console.log(response)
-
             generator.innerHTML = ""
             response.data.map((item, i) => {
                 generator.innerHTML += `
                 <div class="card w-auto bg-white shadow-xl p-4 m-5 mx-15 h-min">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="mb-2 w-10 h-10 text-yellow-300 dark:text-gray-400">
+                        stroke="currentColor" class="mb-2 w-10 text-yellow-300 h-10 dark:text-gray-400">
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
                     </svg>
