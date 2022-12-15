@@ -164,7 +164,6 @@ self.addEventListener('fetch', (event) => {
                                                 cache.put(event.request, networkResponse);
                                                 clearCache(DYNAMYC_CACHE, 90)
                                             })
-
                                         }
                                     })
 
@@ -227,5 +226,3 @@ self.addEventListener('sync', (event) => {
 
 
 })
-
-

@@ -10,7 +10,8 @@ export class Camera{
                 audio:false,
                 video:{
                     width:300,
-                    height:300
+                    height:300,
+                    facingMode: { exact: "environment" }
                 }
             }
         ).then((stream)=>{
