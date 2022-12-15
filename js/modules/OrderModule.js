@@ -42,13 +42,16 @@ btnConfirm.addEventListener('click', function () {
             })
                 .then((response) => response.json())
                 .then((response) => {
-                    console.log(response)
-                    if (response.ok || response.status_code === 201) {
+                    if (response.status_code === 201) {
                         Notiflix.Notify.success('Orden creada correctamente');
-                        location.href = "../../pending-visits.html"
+                    } else if (response.ok) {
+                        Notiflix.Notify.info('Orden en espera: tu orden se creará cuando se detecte una red');
                     } else {
                         Notiflix.Notify.failure('No se logró crear la orden');
                     }
+                    setTimeout(() => {
+                        window.location.replace("./pending-visits.html")
+                    }, 2000);
                 }).catch((err) => {
                     console.log("[ERROR]: " + err)
                 })
