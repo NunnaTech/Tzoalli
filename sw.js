@@ -149,26 +149,38 @@ self.addEventListener('fetch', (event) => {
 
                     //Almacenamos la nueva peticion que no estaba en cache
                     //Y verificamos que el recurso que se va a guardar no sea del cache estatico o inmutable
-                    caches.match(event.request).then((cacheSource) => {
-                        if (cacheSource === undefined) {
-                            caches.open(DYNAMYC_CACHE).then((cache) => {
-                                cache.put(event.request, networkResponse);
-                                clearCache(DYNAMYC_CACHE, 90)
-                            })
-                        }
+
+                    caches.open(INMUTABLE_CACHE).then((inmutable) => {
+                        inmutable.match(event.request).then((inInmutableExist) => {
+
+                            if (inInmutableExist === undefined) {
+
+                                caches.open(STATIC_CACHE).then((static) => {
+                                    static.match(event.request).then((inStaticExist) => {
+
+                                        if (inStaticExist === undefined) {
+
+                                            caches.open(DYNAMYC_CACHE).then((cache) => {
+                                                cache.put(event.request, networkResponse);
+                                                clearCache(DYNAMYC_CACHE, 90)
+                                            })
+                                        }
+                                    })
+
+                                })
+                            }
+                        })
                     })
+
                     return networkResponse.clone()
                 })
                 .catch((err) => {
                     return caches.match(event.request).then((cacheSource) => {
-                        console.log("request source", event.request)
-                        console.log("response cached", cacheSource)
                         //Si el recurso no es undefined esta en cache
                         //Caso contrario, es algo que no estaba en cache (ruta dinamica o recurso al que no se accedio)
                         if (cacheSource === undefined) {
                             return caches.match('/template405.html')
                                 .then((respCache) => {
-                                    console.log("respCache", respCache)
                                     return respCache
                                 })
                         } else {
@@ -214,5 +226,3 @@ self.addEventListener('sync', (event) => {
 
 
 })
-
-
