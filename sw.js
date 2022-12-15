@@ -149,14 +149,30 @@ self.addEventListener('fetch', (event) => {
 
                     //Almacenamos la nueva peticion que no estaba en cache
                     //Y verificamos que el recurso que se va a guardar no sea del cache estatico o inmutable
-                    caches.match(event.request).then((cacheSource) => {
-                        if (cacheSource === undefined) {
-                            caches.open(DYNAMYC_CACHE).then((cache) => {
-                                cache.put(event.request, networkResponse);
-                                clearCache(DYNAMYC_CACHE, 90)
-                            })
-                        }
+
+                    caches.open(INMUTABLE_CACHE).then((inmutable) => {
+                        inmutable.match(event.request).then((inInmutableExist) => {
+
+                            if (inInmutableExist === undefined) {
+
+                                caches.open(STATIC_CACHE).then((static) => {
+                                    static.match(event.request).then((inStaticExist) => {
+
+                                        if (inStaticExist === undefined) {
+
+                                            caches.open(DYNAMYC_CACHE).then((cache) => {
+                                                cache.put(event.request, networkResponse);
+                                                clearCache(DYNAMYC_CACHE, 90)
+                                            })
+
+                                        }
+                                    })
+
+                                })
+                            }
+                        })
                     })
+
                     return networkResponse.clone()
                 })
                 .catch((err) => {
@@ -166,7 +182,6 @@ self.addEventListener('fetch', (event) => {
                         if (cacheSource === undefined) {
                             return caches.match('/template405.html')
                                 .then((respCache) => {
-                                    console.log("respCache", respCache)
                                     return respCache
                                 })
                         } else {

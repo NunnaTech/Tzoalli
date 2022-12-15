@@ -85,56 +85,68 @@ loadContent()
 
 const searchBtn = document.getElementById('searchBtn')
 searchBtn.addEventListener('click', () => {
+
     let searchValue = document.getElementById('searchValue').value
     let token = localStorage.token
     let generator = document.getElementById('product-generator')
-
+    let noContent = document.getElementById('noContent')
     generateFakeCards()
 
     productService.GetAllProductsByCoincidence(token, searchValue)
         .then((response) => response.json())
         .then((response) => {
-            generator.innerHTML = ""
-            response.data.map((item, i) => {
-                generator.innerHTML += `
-                <div class="card w-auto bg-white shadow-xl p-4 m-5 mx-15 h-min">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="mb-2 w-10 text-yellow-300 h-10 dark:text-gray-400">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
-                    </svg>
-                    <a>
-                        <h5 class="mb-2 text-2xl font-semibold tracking-tight text-black">${item.product_name}</h5>
-                    </a>
-                    <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">${item.description}</p>
-                    <label for="my-modal-${i}" class="btn border-none modal-button" style="background-color: #ffbc24; color: white>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                            stroke-width="1.5" stroke="currentColor" class="stroke-1 h-6 w-6 mr-2">
+            console.log(response)
+            if (response.data.length === 0) {
+                generator.innerHTML = ""
+                noContent.innerHTML += `
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="text-gray-400" style="height:50px; width:50px; margin-top:50px;">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                </svg>
+                <h1 class="font-bold text-2xl drop-shadow-sm  text-center text-gray-400">No se encontró el producto</h1>
+              `
+            } else {
+                generator.innerHTML = ""
+                response.data.map((item, i) => {
+                    generator.innerHTML += `
+                    <div class="card w-auto bg-white shadow-xl p-4 m-5 mx-15 h-min">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="mb-2 w-10 text-yellow-300 h-10 dark:text-gray-400">
                             <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
+                                d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
                         </svg>
-                        Detalles
-                    </label>
-                </div>
-
-                <!-- Modal para detalles -->
-                <input type="checkbox" id="my-modal-${i}" class="modal-toggle" />
-                <div class="modal modal-bottom sm:modal-middle">
-                    <div class="modal-box relative">
-                        <label for="my-modal-${i}"
-                            class="btn bg-warning border-none btn-sm btn-circle absolute right-2 top-2">✕</label>
-                        <figure class="px-10 pt-10 flex justify-center">
-                            <img src="${item.product_image}" alt="Shoes" class="rounded-md" height="200" width="200" />
-                        </figure>
-                        <div class="card-body items-center text-center">
-                            <h2 class="text-lg">${item.product_name}</h2>
-                            <p class="font-bold">$ ${item.product_price} cada pieza</p>
+                        <a>
+                            <h5 class="mb-2 text-2xl font-semibold tracking-tight text-black">${item.product_name}</h5>
+                        </a>
+                        <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">${item.description}</p>
+                        <label for="my-modal-${i}" class="btn border-none modal-button" style="background-color: #ffbc24; color: white>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="1.5" stroke="currentColor" class="stroke-1 h-6 w-6 mr-2">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
+                            </svg>
+                            Detalles
+                        </label>
+                    </div>
+    
+                    <!-- Modal para detalles -->
+                    <input type="checkbox" id="my-modal-${i}" class="modal-toggle" />
+                    <div class="modal modal-bottom sm:modal-middle">
+                        <div class="modal-box relative">
+                            <label for="my-modal-${i}"
+                                class="btn bg-warning border-none btn-sm btn-circle absolute right-2 top-2">✕</label>
+                            <figure class="px-10 pt-10 flex justify-center">
+                                <img src="${item.product_image}" alt="Shoes" class="rounded-md" height="200" width="200" />
+                            </figure>
+                            <div class="card-body items-center text-center">
+                                <h2 class="text-lg">${item.product_name}</h2>
+                                <p class="font-bold">$ ${item.product_price} cada pieza</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                
-                `
-            }).join("")
+                    
+                    `
+                }).join("")
+            }
         })
         .catch((err) => {
             console.log("[ERROR]: " + err)
@@ -143,7 +155,7 @@ searchBtn.addEventListener('click', () => {
 
 const searchInput = document.getElementById('searchValue')
 searchInput.addEventListener('input', (e) => {
-    
+
     if (e.target.value === "") {
         generateFakeCards()
         loadContent()
@@ -152,6 +164,8 @@ searchInput.addEventListener('input', (e) => {
 
 const clearBtn = document.getElementById('clearBtn')
 clearBtn.addEventListener('click', () => {
+    let noContent = document.getElementById('noContent')
+    noContent.innerHTML = ""
     searchInput.value = ""
     generateFakeCards()
     loadContent();
